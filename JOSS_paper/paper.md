@@ -86,7 +86,7 @@ for a {Mn8} complex [@Mn8].
 
 ![Figure 1: (a) Structure of the {Mn6} complex and (b) the temperature dependence of magnetic 
 susceptibility obtained using the suscep code. Colour scheme: Mn (dark blue), P (pink), Cl (green), 
-C (black), N (blue) and O (red). Hydrogen atoms have been removed for clarity.](\JOSS_paper\plot.tif)
+C (black), N (blue) and O (red). Hydrogen atoms have been removed for clarity.]
 
 
 # Acknowledgements
