@@ -74,15 +74,15 @@ susceptibility. Although there are other alternatives available to the suscep co
 calculation of coupling constants and the determination of the magnetic susceptibility 
 using these coupling constants.
 
-To illustrate the use of this package, we present the example of the {Mn_6_} complex 
+To illustrate the use of this package, we present the example of the {Mn6} complex 
 shown in Figure 1 (a) [@Mn6]. Each Mn centre in this complex has 4 cis- and 1 trans- 
 neighbours which interact via the Cl- and the phosphonate ligands. One requires 2 J-values 
 to account for these cis- and trans- interactions between Mn centres. Modelling of 6 states 
 for the calculation of the 2 J-values results in 60 possible solutions and using ej_calc, 
-the final values were determined to be -1.28 (cis-coupling) and -3.48 cm-1 (trans-coupling) 
+the final values were determined to be -1.28 (cis-coupling) and -3.48 cm^-1^ (trans-coupling) 
 respectively [@Mn6]. The use of the suscep code calculates the temperature dependence of 
 susceptibility which is shown in Figure 1 (b). This package has been used in a similar manner 
-for a {Mn_8_} complex [@Mn8].
+for a {Mn8} complex [@Mn8].
 
 ![Figure 1: (a) Structure of the {Mn6} complex and (b) the temperature dependence of magnetic 
 susceptibility obtained using the suscep code. Colour scheme: Mn (dark blue), P (pink), Cl (green), 
