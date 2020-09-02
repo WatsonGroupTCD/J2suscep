@@ -74,7 +74,7 @@ susceptibility. Although there are other alternatives available to the suscep co
 calculation of coupling constants and the determination of the magnetic susceptibility 
 using these coupling constants.
 
-To illustrate the use of this package, we present the example of the [Mn &#2086;] complex 
+To illustrate the use of this package, we present the example of the {Mn^6^} complex 
 shown in Figure 1 (a) [@Mn6]. Each Mn centre in this complex has 4 cis- and 1 trans- 
 neighbours which interact via the Cl- and the phosphonate ligands. One requires 2 J-values 
 to account for these cis- and trans- interactions between Mn centres. Modelling of 6 states 
