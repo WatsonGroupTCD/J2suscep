@@ -53,8 +53,6 @@ Program suscep
  totalspin = 1
  Rewind(11)
  EndOfFile = .False.
- Write(12,*) 'Please cite: Altering the nature of coupling by changing the oxidation state in a {Mn6} cage, DOI: 10.1039/D0DT01404D.'
- Write(12,*)
  Call Init()
  Call printer()
  Call SpinMatForm()
