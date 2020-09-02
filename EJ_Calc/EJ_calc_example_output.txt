@@ -1,6 +1,3 @@
- Please cite: Altering the nature of coupling by changing the oxidation state in
-  a {Mn6} cage, DOI: 10.1039/D0DT01404D.
- 
  -------Calculating J values from Spin Densities-------
  This program will use the spin denstities and will not convert the
  spin terms to formal spins.
