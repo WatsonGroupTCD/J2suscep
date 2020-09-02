@@ -84,7 +84,7 @@ respectively [@Mn6]. The use of the suscep code calculates the temperature depen
 susceptibility which is shown in Figure 1 (b). This package has been used in a similar manner 
 for a {$Mn_8$} complex [@Mn8].
 
-![Figure 1: (a) Structure of the {Mn6} complex and (b) the temperature dependence of magnetic 
+![Figure 1: (a) Structure of the {$Mn_6$} complex and (b) the temperature dependence of magnetic 
 susceptibility obtained using the suscep code. Colour scheme: Mn (dark blue), P (pink), Cl (green), 
 C (black), N (blue) and O (red). Hydrogen atoms have been removed for clarity.](plot.tif)
 
