@@ -43,10 +43,11 @@ modelling of multiple spin states using DFT but the solution obtained in the
 end can be dependent on the states modelled [@Cremades1; @Cremades2; 
 @Rajeshkumar; @Vignesh; @Mn6]. To remove this dependency, more states 
 can be modelled but this procedure results in a large number of solutions, 
-that have to be averaged in some sensible way. At the moment however, there 
-is no convenient way to do so. The purpose of this package is to provide a 
-means to accomplish this arduous task. Additionally, for completion, this 
-package can also calculate the temperature dependence of magnetic 
+that have to be averaged in some sensible way. Additionally, the problem of 
+singular solutions also arises and such solutions need to be identified and removed. 
+At the moment however, there is no convenient way to do so. The purpose of this 
+package is to provide a means to accomplish this arduous task. Additionally, for 
+completion, this package can also calculate the temperature dependence of magnetic 
 susceptibility thereby enabling the comparison of the computational data to 
 experiment.
 
