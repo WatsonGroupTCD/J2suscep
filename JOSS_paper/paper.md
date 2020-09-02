@@ -82,7 +82,7 @@ for the calculation of the 2 J-values results in 60 possible solutions and using
 the final values were determined to be -1.28 (cis-coupling) and -3.48 cm^-1^ (trans-coupling) 
 respectively [@Mn6]. The use of the suscep code calculates the temperature dependence of 
 susceptibility which is shown in Figure 1 (b). This package has been used in a similar manner 
-for a {Mn8} complex [@Mn8].
+for a {$Mn_8$} complex [@Mn8].
 
 ![Figure 1: (a) Structure of the {Mn6} complex and (b) the temperature dependence of magnetic 
 susceptibility obtained using the suscep code. Colour scheme: Mn (dark blue), P (pink), Cl (green), 
