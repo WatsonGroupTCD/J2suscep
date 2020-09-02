@@ -1,6 +1,3 @@
- Please cite: Altering the nature of coupling by changing the oxidation state in
-  a {Mn6} cage, DOI: 10.1039/D0DT01404D.
- 
  Number of Magnetic centers:           6
  The J values(cm-1) given are:  -3.47999999999999998    -1.28000000000000003  
  g value:   1.99700000000000     
