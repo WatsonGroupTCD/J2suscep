@@ -1,0 +1,19 @@
+# Makefile for ej_cc
+#
+# runable parameters 
+# FC  
+# OPT
+# FLAGS
+# BLAS 
+#
+
+# intel 
+FC = ifort
+OPT = -O2
+#OPT = -O0 -g -traceback -check all 
+FFLAGS =  -fimf-precision=high 
+BLAS = -mkl=parallel 
+BLAS_LIB =  -mkl=parallel -ltbb -lstdc++ -lpthread -lm -ldl
+MODCMD = -module 
+
+

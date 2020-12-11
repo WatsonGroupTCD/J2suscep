@@ -17,9 +17,9 @@ n=$(cat list | wc -l)
 for((i=1; i<($n); i++))
 do
 	cd $a$i
-	echo "Running "$a$i" in "$1" to calculate coupling constants"
+	echo "Running "$a$i" in "$exe" to calculate coupling constants"
 	echo " "
-	../../../../bin/$1  $b$i $c
+	../../../../bin/$exe  $b$i $c
 	cd ..
 done
 #rm -r $a?/
