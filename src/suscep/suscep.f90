@@ -28,8 +28,8 @@ Program suscep
  ! posval description given in the subroutine FormBasis
  Integer(kind = int_kind), Dimension(:), Allocatable :: pseudospin
  ! pseudospin is simply a pointer pointing to the position of each metal centre
- Integer(kind = int_kind), Dimension(:,:), Allocatable :: jmat
- ! jmat is the J-value matrix storing information about which J-values 
+ Integer(kind = int_kind), Dimension(:,:), Allocatable :: jmatx, jmaty
+ ! jmatx and jmaty are the J-value matrix storing information about which J-values 
  !are associated with different spin pairs
  Real (kind = real_kind), Dimension(:,:), Allocatable :: hamil 
  ! hamil is the spin hamiltonian matrix
@@ -71,7 +71,7 @@ Program suscep
  Call FormBasis()
  Call HamilForm(totalspin)
  Deallocate (spin, basis, pseudospin, hamil)
- Deallocate (spinmat, posval, jval, jmat)
+ Deallocate (spinmat, posval, jval, jmatx, jmaty)
  Close(11)
  Close(12)
 
@@ -103,7 +103,7 @@ Program suscep
                 Read(11, 168) dmension
         Else 
                 Write(*,*) ' Erroneous number of magnetic centres in the input file' 
-                Call Abort
+                STOP 
         End If
         Write(12,*) "Number of Magnetic centers:", dmension
         Allocate(spin(dmension))
@@ -125,7 +125,7 @@ Program suscep
         Do i = 1, dmension
                 If(spin(i) == 0) Then
                         Write(*,*) "Erroneous spin values"
-                        Call Abort
+                        STOP 
                 End If
         End Do
    !!!!! Reading of spins ends !!!!!
@@ -136,7 +136,7 @@ Program suscep
                 Read(11, 168) no_of_j_val 
         Else
                 Write(*,*) ' Erroneous No. of J values'
-                Call Abort
+                STOP 
         End If
         Allocate(jval(no_of_j_val))
         Read(11, '(a)', iostat = ios) read_line
@@ -149,7 +149,7 @@ Program suscep
                 End Do
         Else
                 Write(*,*) ' Erroneous J values'
-                Call Abort
+                STOP 
         End If
         Write(12,*)
    !!!!! J value determination ends !!!!!
@@ -161,7 +161,7 @@ Program suscep
                 Write(12,*) 'g value:', g
         Else
                 Write(12,*) 'Erroneous g value'
-                Call Abort
+                STOP
         End If
    !!!!! G value determination ends!!!!!
 
@@ -171,68 +171,56 @@ Program suscep
                 Read(11, '(a)', iostat = ios) read_line
         Else
                 Write(*,*) 'No Hamiltonian'
-                Call Abort
+                STOP 
         End If
 
    !!!!! Determining the number of variables in the Hamiltonian !!!!!
-        Do i = 1, len_trim(read_line)
-                If(read_line(i:i) == '(') Then
-                        check = .Not.check
-                End If
-                If (check .eqv. .True.) Then
-                        if (read_line(i:i) == '+') Then
-                                i1 = i1 + 1
-                        End If
-                End If
-                If (read_line(i:i) == ')') Then
-                        check = .Not.check
+        i1 = 0
+        Do While (trim(read_line) .ne. 'Field Strength')
+                If(trim(read_line) == '****' .OR. trim(read_line) == 'Field Strength') Then
                         If (i1 > j1) Then
                                 j1 = i1
-                                i1 = 0
                         End If
+                        i1 = 0
+                Else
+                        i1 = i1 + 1 
                 End If
+                Read(11, '(a)', iostat = ios) read_line
         End Do
-        j_mat_col = j1 + 1
-        Allocate(jmat(no_of_j_val, j_mat_col))
-        Do i = 1, no_of_j_val
-                Do j = 1, j_mat_col
-                        jmat(i, j) = 0
-                End Do
-        End Do
+        If (i1 > j1) Then
+                j1 = i1
+        End If
+        Rewind (11)
+        Read(11, '(a)', iostat = ios) read_line
+        Do While (trim(read_line)  .ne. 'Hamiltonian')
+                Read(11, '(a)', iostat = ios) read_line
+        End Do 
+        j_mat_col = j1 !+ 1
+        Allocate(jmatx(no_of_j_val, j_mat_col),jmaty(no_of_j_val, j_mat_col))
+        jmatx = 0
+        jmaty = 0
         i1 = 1
         j1 = 1
-
    !!!!! Reading in each interaction of the spin Hamiltonian !!!!!
-        Do i = 1, len_trim(read_line)
-                If (read_line(i:i) == '(') Then
-                        Read(read_line(i + 1:i + 2), 168) jmat(i1, j1)
-                        j1 = j1 + 1
-                        If (j1 > j_mat_col) Then
-                                i1 = i1 + 1
-                                j1 = 1
-                        End If
-                        check = .Not.check
+        i1 = 1
+        j1 = 1
+        Read(11, '(a)', iostat = ios) read_line
+        Do While (trim(read_line) .ne. 'Field Strength')
+                If(trim(read_line) == '****') Then
+                        i1 = i1 + 1
+                        j1 = 1
+                Else
+                        Backspace(11)
                 End If
-                If (read_line(i:i) == '+' .AND. check .eqv. .True.) Then
-                        Read(read_line(i + 2:i + 3), 168) jmat(i1, j1)
-                        j1 = j1 + 1
-                        If (j1 > j_mat_col) Then
-                                i1 = i1 + 1
-                                j1 = 1
-                        End If
-                End If
-                If (read_line(i:i) == ')') Then
-                        if (j1 > 1) Then
-                                i1 = i1 + 1
-                                j1 = 1
-                        End If
-                        check = .Not.check
-                End If
+                Read(11, *) jmatx(i1,j1), jmaty(i1,j1)
+                j1 = j1 + 1
+                Read(11, '(a)') read_line
         End Do
    !!!!! Reading and printing of the Spin Hamiltonian ends !!!!!
 
    !!!!! Reading in the field strength !!!!!
         166 Format(F10.3)
+        backspace(11)
         Read(11,'(a)', iostat = ios) read_line
         If(trim(read_line) == 'Field Strength') Then
                 Read(11,166) field_str !Field strength needs to be in oersted
@@ -258,7 +246,8 @@ Program suscep
          Write(12,*) "Metal Number:"
          Write(12,*) pseudospin
          Write(12,*) "Spin on the Metal:"
-         189 Format(9x, F4.1)
+         Write(12,'(a)', advance='no') ' '
+         189 Format(8x, F4.1)
          Do i = 1, dmension
                  Write(12, 189, advance = 'no') spin(i)
          End Do
@@ -270,15 +259,29 @@ Program suscep
                  Write (12, 249, advance = 'no') jval(i)
                  Write (12, '(a)', advance = 'no') '  '
                  Do j = 1, j_mat_col
-                         If (jmat(i, j) == 0) Then
-                                 Write (12, '(a)', advance = 'no') 'xx  '
+                         If (jmatx(i, j) == 0 .AND. jmaty(i, j) == 0) Then
+                                 Write (12, '(a)', advance = 'no') ' xxx  '
                          Else
-                                 Write (12, 168, advance = 'no') jmat(i, j)
+                                 Write (12, 168, advance = 'no') jmatx(i, j)
+                                 Write (12, 168, advance = 'no') jmaty(i, j)
                                  Write (12, '(a)', advance = 'no') '  '
                          End If
                  End Do
                  Write(12,*)
          End Do
+         !Do i = 1, no_of_j_val
+         !       Do j = 1, j_mat_col
+         !               Write (12, 168, advance = 'no') jmatx(i, j)
+         !       End Do
+         !       Write (12, *)
+         !End Do
+         !Do i = 1, no_of_j_val
+         !       Do j = 1, j_mat_col
+         !               Write (12, 168, advance = 'no') jmaty(i, j)
+         !       End Do
+         !       Write (12, *)
+         !End Do
+
  End Subroutine printer
  
  Subroutine SpinMatForm()
@@ -434,9 +437,9 @@ Subroutine HamilForm(matdimen)
             Do j = 1, totalspin !i,j used for running through each value of SH
                 Do k = 1, no_of_j_val !for using all J values 
                     Do l = 1, j_mat_col !for each S1S2 term defined under a given J value
-                        If (jmat(k,l) .ne. 0) Then
-                            x = jmat(k,l)/10
-                            y = Mod(jmat(k,l), 10)
+                        If (jmatx(k,l) .ne. 0 .AND. jmaty(k,l) .ne. 0) Then
+                            x = jmatx(k,l)
+                            y = jmaty(k,l)
                             Do m = 1, dmension
                                 If (basis(i,m) .ne. -50 .AND. basis(j,m) .ne. -50) Then
                                     If (m .ne. x .AND. m .ne. y) Then
