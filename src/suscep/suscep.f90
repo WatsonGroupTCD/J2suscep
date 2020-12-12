@@ -99,7 +99,7 @@ Program suscep
    !!!!! Determining number of magnetic centres (i.e. metal atoms) !!!!!
    !!!!! Initialisation of spin for each metal centre !!!!!
         Read(11, '(a)', iostat = ios) read_line
-        If(trim(read_line) == 'magnetic centres') Then
+        If(trim(read_line) .eq. 'magnetic centres') Then
                 Read(11, 168) dmension
         Else 
                 Write(*,*) ' Erroneous number of magnetic centres in the input file' 
@@ -115,7 +115,7 @@ Program suscep
 
    !!!!! Reading in the actual values of spin for each centre !!!!!
         Read(11, '(a)', iostat = ios) read_line
-        If(trim(read_line) == 'spin') Then
+        If(trim(read_line) .eq. 'spin') Then
                 Do i = 1, dmension
                         Read(11, 189) spin(i)
                         pseudospin(i) = i
@@ -123,7 +123,7 @@ Program suscep
                 End Do
         End If
         Do i = 1, dmension
-                If(spin(i) == 0) Then
+                If(spin(i) .eq. 0) Then
                         Write(*,*) "Erroneous spin values"
                         STOP 
                 End If
@@ -132,7 +132,7 @@ Program suscep
 
    !!!!! Determining the number of J values, reading them and printing them!!!!!
         Read(11, '(a)', iostat = ios) read_line
-        If(trim(read_line) == 'No. of J values') then
+        If(trim(read_line) .eq. 'No. of J values') then
                 Read(11, 168) no_of_j_val 
         Else
                 Write(*,*) ' Erroneous No. of J values'
@@ -140,7 +140,7 @@ Program suscep
         End If
         Allocate(jval(no_of_j_val))
         Read(11, '(a)', iostat = ios) read_line
-        If(trim(read_line) == 'J values') then
+        If(trim(read_line) .eq. 'J values') then
                 Write(12,'(a)', advance = 'no') ' The J values(cm-1) given are:'
                 Do i = 1, no_of_j_val
                         Read(11, 245) jval(i)
@@ -156,7 +156,7 @@ Program suscep
 
    !!!!! Determining the g value!!!!!
         Read(11, '(a)', iostat = ios) read_line
-        If (trim(read_line) == 'g value') Then
+        If (trim(read_line) .eq. 'g value') Then
                 Read(11, 193) g
                 Write(12,*) 'g value:', g
         Else
@@ -167,7 +167,7 @@ Program suscep
 
    !!!!! Reading in and printing the Spin Hamiltonian !!!!!
         Read(11, '(a)', iostat = ios) read_line
-        If(trim(read_line) == 'Hamiltonian') Then
+        If(trim(read_line) .eq. 'Hamiltonian') Then
                 Read(11, '(a)', iostat = ios) read_line
         Else
                 Write(*,*) 'No Hamiltonian'
@@ -177,8 +177,8 @@ Program suscep
    !!!!! Determining the number of variables in the Hamiltonian !!!!!
         i1 = 0
         Do While (trim(read_line) .ne. 'Field Strength')
-                If(trim(read_line) == '****' .OR. trim(read_line) == 'Field Strength') Then
-                        If (i1 > j1) Then
+                If((trim(read_line) .eq. '****') .OR. (trim(read_line) .eq. 'Field Strength')) Then
+                        If (i1 .gt. j1) Then
                                 j1 = i1
                         End If
                         i1 = 0
@@ -187,7 +187,7 @@ Program suscep
                 End If
                 Read(11, '(a)', iostat = ios) read_line
         End Do
-        If (i1 > j1) Then
+        If (i1 .gt. j1) Then
                 j1 = i1
         End If
         Rewind (11)
@@ -206,7 +206,7 @@ Program suscep
         j1 = 1
         Read(11, '(a)', iostat = ios) read_line
         Do While (trim(read_line) .ne. 'Field Strength')
-                If(trim(read_line) == '****') Then
+                If(trim(read_line) .eq. '****') Then
                         i1 = i1 + 1
                         j1 = 1
                 Else
@@ -222,7 +222,7 @@ Program suscep
         166 Format(F10.3)
         backspace(11)
         Read(11,'(a)', iostat = ios) read_line
-        If(trim(read_line) == 'Field Strength') Then
+        If(trim(read_line) .eq. 'Field Strength') Then
                 Read(11,166) field_str !Field strength needs to be in oersted
                 field_str = field_str * 1000.0_real_kind/(4.0_real_kind*pi) !A/m
         End If
@@ -259,7 +259,7 @@ Program suscep
                  Write (12, 249, advance = 'no') jval(i)
                  Write (12, '(a)', advance = 'no') '  '
                  Do j = 1, j_mat_col
-                         If (jmatx(i, j) == 0 .AND. jmaty(i, j) == 0) Then
+                         If ((jmatx(i, j) .eq. 0) .AND. (jmaty(i, j) .eq. 0)) Then
                                  Write (12, '(a)', advance = 'no') ' xxx  '
                          Else
                                  Write (12, 168, advance = 'no') jmatx(i, j)
@@ -296,7 +296,7 @@ Program suscep
         !with the metal centres under consideration
         Do i1 = 2, dmension 
                 x = spin(i1)
-                If (x > maxspin) Then 
+                If (x .gt. maxspin) Then 
                         maxspin = x
                 End If
         End Do
@@ -318,7 +318,7 @@ Program suscep
         Do i1 = 1, Size(spin) 
                 x = spin(k)
                 Do j1 = 1, spinmatdim
-                        If (x >= -1 * spin(k)) Then
+                        If (x .ge. -1 * spin(k)) Then
                                 spinmat(i1,j1) = x
                         End if
                         x = x - 1
@@ -340,7 +340,7 @@ Program suscep
         Write(12,*) "Magnetic Spin Quantum no. Ms matrix:"
         Do i1 = 1, Size(spin) 
                 Do j1 = 1, spinmatdim
-                        If (spinmat(i1,j1) == -50) Then
+                        If (spinmat(i1,j1) .eq. -50) Then
                                 Write(12,'(a)',advance = 'no') "   xx"
                         Else
                                 Write(12,145, advance = 'no') spinmat(i1,j1)
@@ -380,7 +380,7 @@ Program suscep
                 Do counter = 1, Size(pos)
                         basis(k,counter) = posval(counter)
                 End Do
-                If (k < totalspin) Then
+                If (k .lt. totalspin) Then
                         Call UpdatePos(pos)
                 End If
         End Do
@@ -395,11 +395,11 @@ Program suscep
         Integer(kind = int_kind) :: k, matsiz, t
         matsiz = Size(posit)
         Do k = Size(posit), 2, -1
-                If (posit(k) > spin_mat_col) then
+                If (posit(k) .gt. spin_mat_col) then
                         posit(k) = 1
                         posit(k - 1) = posit(k - 1) + 1
                 End If
-                If (spinmat(k,posit(k)) == -50.0) Then
+                If (spinmat(k,posit(k)) .eq. -50.0) Then
                         posit(k) = 1
                         posit(k - 1) = posit(k - 1) + 1
                 End If
@@ -437,14 +437,14 @@ Subroutine HamilForm(matdimen)
             Do j = 1, totalspin !i,j used for running through each value of SH
                 Do k = 1, no_of_j_val !for using all J values 
                     Do l = 1, j_mat_col !for each S1S2 term defined under a given J value
-                        If (jmatx(k,l) .ne. 0 .AND. jmaty(k,l) .ne. 0) Then
+                        If ((jmatx(k,l) .ne. 0) .AND. (jmaty(k,l) .ne. 0)) Then
                             x = jmatx(k,l)
                             y = jmaty(k,l)
                             Do m = 1, dmension
-                                If (basis(i,m) .ne. -50 .AND. basis(j,m) .ne. -50) Then
-                                    If (m .ne. x .AND. m .ne. y) Then
+                                If ((basis(i,m) .ne. -50) .AND. (basis(j,m) .ne. -50)) Then
+                                    If ((m .ne. x) .AND. (m .ne. y)) Then
                                         !Write(12,*) 't init if', t
-                                        If (basis(i,m) == basis(j,m)) Then
+                                        If (basis(i,m) .eq. basis(j,m)) Then
                                             t = t * kron_del(basis(i,m),basis(j,m))
                                         Else
                                             t = 0.0_real_kind
@@ -483,7 +483,7 @@ End Subroutine HamilForm
 
 Integer Function kron_del(a, b)
         Real(kind = real_kind) :: a, b
-        If (a == b) Then
+        If (a .eq. b) Then
                 kron_del = 1.0_real_kind
         Else
                 kron_del = 0.0_real_kind
@@ -546,7 +546,7 @@ Subroutine Zeeman()
                         Do l = 1, dmension
                                 temp1 = 1
                                 Do k = 1, dmension
-                                        If ( k == l) Then
+                                        If ( k .eq. l) Then
                                                 dot = bm * g * basis(j,k) *&
                                                 & kron_del(basis(i,k), basis(j,k))
                                                 raisre = 0.5_real_kind * bm * g * &
@@ -622,19 +622,19 @@ Subroutine suscep_calc(eigenb1, eigenb2, eigenb3)
    !!!!! Assignment of values to the B matrices and the eigen value matrices !!!!!
         Do i = 1, 3
                 Do j = 1, 3
-                        If (i == 1) Then
+                        If (i .eq. 1) Then
                                 If (check  .eqv. .True.) Then
                                         Do k = 1, totalspin
                                                 eigen1(k,i) = eigenb1(k)
                                          End Do
                                          check = .False.
                                 End If
-                                If (j <= 3) Then
+                                If (j .le. 3) Then
                                         B_mat(i,j) = 1.0_real_kind
                                 End If
                         Else 
                                 If (check  .eqv. .True.) Then
-                                        if (i == 2) then
+                                        if (i .eq. 2) then
                                         Do k = 1, totalspin
                                                 eigen1(k,i) = eigenb2(k)
                                         End Do
@@ -645,7 +645,7 @@ Subroutine suscep_calc(eigenb1, eigenb2, eigenb3)
                                         End If
                                         check = .False.
                                 End If   
-                                If (j <= 3) Then
+                                If (j .le. 3) Then
                                         B_mat(i, j) = (0 + (N * delt)) ** (i - 1) 
                                 End If
                         End If
