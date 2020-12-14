@@ -35,7 +35,7 @@ $(OBJDIR)/%.o: %.F90
 OBJPROG = $(addprefix $(OBJDIR)/,$(PROG))
 
 $(OBJPROG): $(addprefix $(OBJDIR)/,$(OBJECTS))
-	$(FC) $(FPP_OPTIONS) $(FFLAGS) $(OPT) $(MOD) $^  -o $@  $(BLAS_LIB) 
+	$(FC) $(FPP_OPTIONS) $(BLAS_LIB) $(FFLAGS) $(OPT) $(MOD) $^  -o $@  $(BLAS_LIB) 
  
 nothing:
 	@echo "nothing to do - use 'make TYPE=option' where option is either formal or spin_density"
