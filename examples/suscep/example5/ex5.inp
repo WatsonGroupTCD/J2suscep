@@ -1,19 +1,36 @@
 magnetic centres
-3
+6
 spin
 2.0
 2.0
 2.0
+2.0
+2.0
+2.0
 No. of J values
-1
+2
 J values
--9.02
+-3.48
+-1.28
 g value
-1.996
+1.998
 Hamiltonian
 1 2
 1 3
+1 5
+1 6
 2 3
+2 4
+2 6
+3 4
+3 5
+4 5
+4 6
+5 6
+****
+1 4
+3 6
+2 5
 Field Strength
 1000.0
 
