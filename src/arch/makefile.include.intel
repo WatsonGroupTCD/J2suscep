@@ -1,6 +1,6 @@
 # Makefile for ej_cc
 #
-# runable parameters 
+# tunable parameters 
 # FC  
 # OPT
 # FLAGS
@@ -12,8 +12,19 @@ FC = ifort
 OPT = -O2
 #OPT = -O0 -g -traceback -check all 
 FFLAGS =  -fimf-precision=high 
+
+# mkl library (for blas and lapack) 
 BLAS = -mkl=parallel 
 BLAS_LIB =  -mkl=parallel -ltbb -lstdc++ -lpthread -lm -ldl
+
+# system blas and lapack 
+#BLAS =
+#BLAS_LIB  = -lblas -llapack
+
+# openblas 
+#BLAS =
+#BLAS_LIB  = -lopenblas
+
 MODCMD = -module 
 
 

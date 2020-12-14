@@ -13,9 +13,10 @@ OPT = -O2
 FFLAGS =  -ffree-line-length-none 
 #BLAS =  -m64 -I${MKLROOT}/include 
 #BLAS_LIB =  -L${MKLROOT}/lib/intel64 -Wl,--no-as-needed -lmkl_gf_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl
-BLAS = 
-BLAS_LIB  = -L/usr/lib64 -lblas -llapack 
 #BLAS = 
-#BLAS_LIB  = -L/usr/lib64 -lopenblas 
+#BLAS_LIB  = -lblas -llapack 
+BLAS = 
+BLAS_LIB  = -lopenblas 
 MODCMD = -J            
+
 
