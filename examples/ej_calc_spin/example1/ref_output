@@ -21,8 +21,8 @@
 2.9222485 2.9222495 -2.102255438348413E+03                                                          
  Number of spin density sets:           2
  Spin Matrix
-   2.8580703  -2.8580187    -2102.2586384322
-   2.9222485   2.9222495    -2102.2554383484
+   2.8580703  -2.8580187    -2102.2586384321
+   2.9222485   2.9222495    -2102.2554383483
  
  No. of J value asked for =            1
  Interactions considered under each J value
@@ -37,7 +37,7 @@ J 1
            1 C           1 =           1
  Solving the equations
   Average J values
-Ref. eq.     non-singular solutions      J 1     
+ Ref.   eq.     non-singular solutions      J 0     
  1               1                   -84.0722
  2               1                   -84.0722
   Global Average

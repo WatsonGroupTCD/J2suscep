@@ -227,7 +227,7 @@ Subroutine std_dev2d(avg, full_dat)
        166 Format(i3)
        Do j = 1, Size(avg)
                Write(16, 165, advance = 'no') stddev(j)
-               Write(16, '(a)', advance = 'no') '('
+               Write(16, '(a)', advance = 'no') ' ('
                Write(16, 166, advance = 'no') Int(std_per(j))
                Write(16, '(a)', advance = 'no') '%)'
        End Do
