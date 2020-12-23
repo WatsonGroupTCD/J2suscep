@@ -17,10 +17,10 @@ test_ej_calc_form:
 	./test.sh ej_calc_form  $(start)  $(finish) 
 
 test_ej_calc_spin:         
-	./test.sh ej_calc_spin  $(start)  $(finish) 
+	./test.sh ej_calc_spin  $(start)  $(finish)  
 
 test_suscep:         
-	./test.sh suscep  $(start)  $(finish) 
+	./test.sh suscep  $(start)  $(finish)  
 
 clean:
 	rm -fr ej_calc_form ej_calc_spin suscep 

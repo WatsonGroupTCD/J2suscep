@@ -38,10 +38,10 @@
       
       if(data==2) {
          if (program[1]==program[2] ) {
-            print " PASS - Running matching programs ", program[1] 
+            print "     PASS - Running matching programs ", program[1] 
          }
          else {
-            print " FAIL - Output from running difference programs", program[1], program[2]
+            print "     FAIL - Output from running difference programs", program[1], program[2]
             FAIL = 1 
          }
       }
@@ -56,10 +56,10 @@
 #      print "num_mag = ",num_mag [1], num_mag[2]
       if(data==2) {
          if (num_mag[1]==num_mag[2] ) {
-            print " PASS - matching number of magnetic atoms", num_mag[1] 
+            print "     PASS - matching number of magnetic atoms", num_mag[1] 
          }
          else {
-            print " FAIL - detecting different number of magnetic atoms ", num_mag[1], num_mag[2]
+            print "     FAIL - detecting different number of magnetic atoms ", num_mag[1], num_mag[2]
             FAIL = 1 
          }
       }
@@ -83,24 +83,24 @@
          pass = 0 
          for (i=1;i<=num_mag[1];i++) {
 #            if (sets_spin[1,read_sets,i]== sets_spin[2,read_sets,i]) {
-            if (check (sets_spin[1,read_sets,i] - sets_spin[2,read_sets,i])) {
+            if (check(sets_spin[1,read_sets,i] - sets_spin[2,read_sets,i])) {
                pass++      
 #            print " pass= ", pass , sets_spin[1,read_sets,i], sets_spin[2,read_sets,i]
             }
          }
          if (pass==num_mag[1]){
-            print " PASS - spin set ",read_sets, " magnetic moments "
+            print "     PASS - spin set ",read_sets, " magnetic moments "
          } 
          else {
-            print " FAIL - Output has different spin data for set ", read_sets
+            print "     FAIL - Output has different spin data for set ", read_sets
             FAIL = 1 
          }
 #         if (sets_energy[1,read_sets]==sets_energy[2,read_sets] ) {
          if (check(sets_energy[1,read_sets] - sets_energy[2,read_sets])) {
-            print " PASS - spin set ", read_sets ," energy matches ",sets_energy[1,read_sets] 
+            print "     PASS - spin set ", read_sets ," energy matches ",sets_energy[1,read_sets] 
          }
          else {
-            print " FAIL - Output has different energies for spin set ",read_sets, "Energy are ",sets_energy [1,read_sets], sets_energy[2,read_sets] 
+            print "     FAIL - Output has different energies for spin set ",read_sets, "Energy are ",sets_energy [1,read_sets], sets_energy[2,read_sets] 
             FAIL = 1 
 
          }
@@ -121,10 +121,10 @@
 
       if(data==2) {
          if (num_sets[1]==num_sets[2] ) {
-            print " PASS - same number of data sets  ", num_sets[1] 
+            print "     PASS - same number of data sets  ", num_sets[1] 
          }
          else {
-            print " FAIL - different number of data sets detected ", num_sets[1], num_sets[2]
+            print "     FAIL - different number of data sets detected ", num_sets[1], num_sets[2]
             FAIL = 1 
          }
       }
@@ -169,10 +169,10 @@
             }
          }
          if (pass==num_J[1]){
-            print " PASS - inital J values match for set " , read_J    
+            print "     PASS - inital J values match for set " , read_J    
          } 
          else {
-            print " FAIL - Output has different initial J values "
+            print "     FAIL - Output has different initial J values "
             FAIL = 1 
          }
       } 
@@ -213,10 +213,10 @@
             }
          }
          if (pass==num_J[1]){
-            print " PASS - final J values match  " 
+            print "     PASS - final J values match  " 
          } 
          else {
-            print " FAIL - Output has different final J values "
+            print "     FAIL - Output has different final J values "
             FAIL = 1 
          }
       }

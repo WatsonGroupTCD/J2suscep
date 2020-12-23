@@ -1,0 +1,27 @@
+magnetic centres
+2
+spin
+2.0
+2.0
+No. of J values
+1
+J values
+-84.07
+g value
+2.02
+Hamiltonian
+1 2
+Field Strength
+1000.0
+
+
+
+'no. of magnetic centres' is an integer
+the 'spin' values should be followed with a decimal point if they are integral
+'No. of J values' should be an integer
+'J values' should be followed with a decimal point if they are integral
+the hamiltonian needs to be expressed as given above there has to be a space after each + sign
+The Field strength has to be in Oersted
+all the words used have to be exactly the same since they are used as checkpoint to determine if
+that particular information is present in the file or not
+

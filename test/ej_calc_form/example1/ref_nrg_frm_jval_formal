@@ -1,0 +1,14 @@
+ This file contains the energy (in cm-1)  of all the possible spin
+ configurations using the J value set obtained.
+  The J value set (cm-1) used is as follows:
+  -78.0374663506167     
+ Total possible spin configurations:           2
+     M  1       M  2     Energy(cm-1)
+      3          3         351.1686
+      3         -3        -351.1686
+ Sorted Energies (Energies (cm-1) wrt to the ground state):
+     M  1       M  2     Energy(cm-1)
+      3         -3        -351.1686
+ 
+      3          3         351.1686
+  ---End Of File---
