@@ -35,7 +35,7 @@ do
         elif [ "$exe" = "ej_calc_spin" ]; then
            awk -f ../../comp_ej_calc.awk $b$i"_spin.out" ref_output 
         elif [ "$exe" = "suscep" ]; then
-           awk -f ../../comp_suscep.awk $b$i".out" ref_out 
+           awk -f ../../comp_suscep.awk $b$i".out" ref_output 
         fi 
 
 # check if successful 

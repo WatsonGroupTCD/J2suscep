@@ -83,6 +83,7 @@
          pass = 0 
          for (i=1;i<=num_mag[1];i++) {
 #            if (sets_spin[1,read_sets,i]== sets_spin[2,read_sets,i]) {
+#            print " check ",  sets_spin[1,read_sets,i], sets_spin[2,read_sets,i]
             if (check(sets_spin[1,read_sets,i] - sets_spin[2,read_sets,i])) {
                pass++      
 #            print " pass= ", pass , sets_spin[1,read_sets,i], sets_spin[2,read_sets,i]
@@ -149,23 +150,24 @@
    }
 
 #####################################################
-# read J values (after locating) 
+# read J inital values (after locating) 
    
    read_J>0 && read_J<=num_sets[data] {
       for (i=3;i<=NF;i++) {
-         sets_J[data,read_sets,i-2]= $i 
+         sets_J[data,read_J,i-2]= $i 
       }
 
 #      for (i=1;i<=num_J[data];i++) 
-#         printf ("%12.8G ", sets_J[data,read_sets,i])
+#         printf ("%12.8G ", sets_J[data,read_J,i])
 #      printf "\n"
 
       if (data==2) {
          pass = 0 
          for (i=1;i<=num_J[1];i++) {
-            if (sets_J[1,read_sets,i]== sets_J[2,read_sets,i]) {
+#            print " check ",i,  sets_J[1,read_J,i], sets_J[2,read_J,i]
+            if (sets_J[1,read_J,i]== sets_J[2,read_J,i]) {
                pass++      
-#            print " pass= ", pass , sets_spin[1,read_sets,i], sets_spin[2,read_sets,i]
+#            print " pass= ", pass , sets_J[1,read_J,i], sets_J[2,read_J,i]
             }
          }
          if (pass==num_J[1]){

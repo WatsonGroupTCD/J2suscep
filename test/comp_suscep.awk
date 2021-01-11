@@ -107,46 +107,51 @@
    } 
 
 #####################################################
-# number of J values 
-#
-#   NF == 8 && $1=="No." && $2=="of"  {
-#      num_J[data]=$8
-#   }
+# chi vs temp found  
+
+   NF == 3 && $1=="Temperature" && $2=="Chi"  {
+      read_chi=1      
+      pass = 0 
+   }
 
 #####################################################
-# read final J values (after locating) 
+# test chi and chiT vs T  (after locating) 
    
-#   read_final_J>0 {
-##      print " test ", read_final_J  
-#      for (i=2;i<=NF;i++) {
-#         sets_final_J[data,i-2]= $i 
-#      }
+   read_chi>0 {
+# do it for 5K and up as can get NaN 
+      if ($1 > 5 ) {
+         chi[data,read_chi] = $2 
+         chiT[data,read_chi] = $3 
+
+#         printf ("%12.8G ", chi[data,read_chi],chiT[data,read_chi])
+#         printf "\n"
+
+        if (data==2) {
+#            print "read_chi = ",read_chi
+#            print read_chi, chi[1,read_chi], chi[2,read_chi]
+#            print read_chi, chiT[1,read_chi], chiT[2,read_chi]
+#            print check( chi[1,read_chi]- chi[2,read_chi])
+#            print check( chiT[1,read_chi]- chiT[2,read_chi])
+            if (check(chi[1,read_chi] - chi[2,read_chi]) && check(chiT[1,read_chi] - chiT[2,read_chi])) {
+               pass++      
+            }
+            
+        }
+      }
+         
+         if (data==2 && read_chi==300 && pass==295 ){
+            print "    PASS - chi and chiT test " 
+         } 
+         else if (data==2 && read_chi==300 && pass<295 ){
+            print "    FAIL - Output has differences in chi and chiT  ", pass 
+            FAIL = 1 
+         }
+
 #
-##      for (i=1;i<=num_J[data];i++) 
-##         printf ("%12.8G ", sets_final_J[data,i])
-##      printf "\n"
-#
-#      if (data==2) {
-#         pass = 0 
-#         for (i=1;i<=num_J[1];i++) {
-#            if (sets_final_J[1,i]== sets_final_J[2,i]) {
-#               pass++      
-##            print " pass= ", pass , sets_final_J[1,i], sets_final_J[2,i]
-#            }
-#         }
-#         if (pass==num_J[1]){
-#            print "    PASS - final J values match  " 
-#         } 
-#         else {
-#            print "    FAIL - Output has different final J values "
-#            FAIL = 1 
-#         }
-#      }
-#
-#
-#      read_final_J=0
-#      loc_final_J=0
-#   }
+      read_chi++
+      if(read_chi>300) 
+          read_chi=0
+   }
 
 #####################################################
 # found final J value 
