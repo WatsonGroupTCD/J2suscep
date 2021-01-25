@@ -423,7 +423,6 @@ Module modul_lib
         call dgesvx( 'N' , 'N'  , n, nrhs, jval_t_solv, lda, af, ldaf, ipiv, equed, r, c, loc_nrg, ldb, x, ldb, rcond, ferr, berr, work, iwork, info )
         !call dgesvx(fact, trans, n, nrhs, a          , lda, af, ldaf, ipiv, equed, r, c, b      , ldb, x, ldx, rcond, ferr, berr, work, iwork, info )
         If (info == 0 .OR. info == n + 1) then
-                !Write(12,*) 'Pakka singular hai saala'
                 singular = .TRUE.
         End If
         Deallocate(ipiv, r, c, x, iwork, work, af, ferr, berr)
