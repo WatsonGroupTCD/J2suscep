@@ -25,7 +25,7 @@ Program jval_calc
         STOP          
  End if
 
- inp_file = trim(Filename1) // '.inp'
+ inp_file = trim(Filename1) !// '.inp'
 #ifdef formal
  Outfile = trim(Filename1) // '_form.out'
 #else

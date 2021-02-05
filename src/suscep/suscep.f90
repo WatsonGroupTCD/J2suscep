@@ -47,7 +47,7 @@ Program suscep
  ! Outfile stores the name of the output file
  Logical :: EndOfFile
  Call Get_Command_Argument(1, FileName)
- inp_file = trim(Filename) // '.inp'
+ inp_file = trim(Filename) !// '.inp'
  Outfile = trim(Filename) // '.out'
  Open (Unit = 11, file = inp_file, action = 'read', position = 'rewind', iostat = ios)
  Open (Unit = 12, file = Outfile, status = 'unknown', action = 'readwrite')
