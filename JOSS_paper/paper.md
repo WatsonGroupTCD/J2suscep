@@ -61,13 +61,13 @@ ej_calc and suscep. Both codes only rely on the LAPACK library [@Lapack]. The
 code ej_calc uses the data obtained from the DFT calculations and determines the 
 isotropic exchange coupling between paramagnetic centres. With a completely 
 programmable Hamiltonian, this code allows the calculation of any number of 
-J-values and is only limited by the number of states modelled. Spin densities 
-obtained from any approach can be used for the calculation of J-values. The code 
-calculates all possible solutions based on the Hamiltonian and the states modelled, 
-removes any singular solutions and calculates an average set of coupling constants 
-and the standard deviations. Additionally, it also calculates the energy of the 
-different spin states relative to each other using the coupling constants, for 
-comparison to the original DFT data.
+J-values and is only limited by the number of states modelled. It employs the spin 
+density approach [@spin_dens], and spin densities obtained from any approach can be used for the 
+calculation of J-values. The code calculates all possible solutions based on the 
+Hamiltonian and the states modelled, removes any singular solutions and calculates 
+an average set of coupling constants and the standard deviations. Additionally, it 
+also calculates the energy of the different spin states relative to each other using 
+the coupling constants, for comparison to the original DFT data.
 
 The suscep code calculates the temperature dependence of magnetic susceptibility 
 using the coupling constants. Similar to ej_calc, the Hamiltonian is flexible and 
