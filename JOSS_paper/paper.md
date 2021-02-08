@@ -40,7 +40,7 @@ centres, called the isotropic exchange interaction, has a strong influence
 on the magnetic properties. Within the framework of density functional 
 theory (DFT) using what is known as the broken symmetry approach, this 
 interaction can be quantified and the coupling strength is called the 
-J-value or coupling constant. The broken symmetry approach requires the 
+J-value or coupling constant [@Bsym; @Bsym1]. The broken symmetry approach requires the 
 modelling of multiple spin states using DFT but the solution obtained in the 
 end can be dependent on the states modelled [@Cremades1; @Cremades2; 
 @Rajeshkumar; @Vignesh; @Mn6]. To remove this dependency, more states 
