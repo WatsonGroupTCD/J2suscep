@@ -79,7 +79,7 @@ using these coupling constants.
 
 To illustrate the use of this package, we present the example of the {$Mn_6$} complex 
 shown in Figure 1 (a) [@Mn6]. Each Mn centre in this complex has 4 cis- and 1 trans- 
-neighbours which interact via the Cl- and the phosphonate ligands. One requires 2 J-values 
+neighbours which interact via the Cl^-^ and the phosphonate ligands. One requires 2 J-values 
 to account for these cis- and trans- interactions between Mn centres. Modelling of 6 states 
 for the calculation of the 2 J-values results in 60 possible solutions and using ej_calc, 
 the final values were determined to be -1.28 (cis-coupling) and -3.48 cm^-1^ (trans-coupling) 
