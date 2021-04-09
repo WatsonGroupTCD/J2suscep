@@ -46,7 +46,7 @@ J 2    1 4   3 6   2 5
   -86.1554  -21.5389
  
  Possible combination of equations per set of equations 
- considered (i.e. total number of eqations -1):
+ considered (i.e. total number of eqations - 1):
            5 C           2 =          10
  Solving the equations
   Average J values
@@ -87,5 +87,5 @@ Std. Dev.    0.04(  3%)   0.05(  1%)
     136.03174               136.58823                     0.55649(  0.4%)
     259.08325               259.97005                     0.88680(  0.3%)
  
- Time taken(sec) in program execution  5.998000000000000E-003
+ Time taken(sec) in program execution  4.999000000000000E-003
  ---End Of File---

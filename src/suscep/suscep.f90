@@ -13,14 +13,17 @@ Program suscep
  !Integer, parameter :: real_kind = REAL32 !Single Precision
  Integer, parameter :: real_kind = REAL64 !Double precision
  Integer, parameter :: comp_kind = REAL64 !Double precision
- Real(kind = real_kind) :: pi
+ Integer(kind = int_kind) :: ios 
+ Real(kind = real_kind) :: pi, temp_init, temp_fin, step_size
+ !pi stores the value of pi
+ !temp_init and temp_fin store the temperature range
+ !step_size stores the step size for temperature increment
  Integer(kind = int_kind) :: i, j, dmension, no_of_j_val, totalspin, spin_mat_col, j_mat_col
  ! dmension is the number of magnetic centres
  ! no_of_j_val stores the total number of unique J-values defined for the Hamiltonian
  ! totalspin stores the row (or column) size of the spin hamiltonian matrix
  ! spin_mat_col stores the column size of the spin matrix 
  ! j_mat_col stores the column size of the J value matrix
- Integer(kind = int_kind) :: ios
  Real(kind = real_kind), Dimension(:), Allocatable :: spin, jval, posval
  ! spin stores the S value (i.e. total number of unpaired electrons/2) for each
  !metal centre 
@@ -59,7 +62,7 @@ Program suscep
  Write(12,*) '               *            Suscep            *'
  Write(12,*) '               ********************************'
  Write(12,*) ' part of the J2suscep package for calculating coupling constants'
- Write(12,*) ' and magnestic susceptability '
+ Write(12,*) ' and magnestic susceptibility '
  Write(12,*) ''
  Write(12,*) ' Suscep calculates the temperature dependence of magnetic '
  Write(12,*) ' susceptibility on coupling constants.'
@@ -87,7 +90,7 @@ Program suscep
         check1 = .False.
         168 Format(i2)
         189 Format(F4.1)
-        193 Format(F6.3)
+        193 Format(F7.3)
         245 Format(F22.17)
         pi = 4.0_real_kind*DAtan(1.0_real_kind) !4.0*Atan(1.0) is the value of pi
         i1 = 0
@@ -141,10 +144,10 @@ Program suscep
         Allocate(jval(no_of_j_val))
         Read(11, '(a)', iostat = ios) read_line
         If(trim(read_line) .eq. 'J values') then
-                Write(12,'(a)', advance = 'no') ' The J values(cm-1) given are:'
+                Write(12,'(a)', advance = 'no') ' The J values(cm-1) given are: '
                 Do i = 1, no_of_j_val
                         Read(11, 245) jval(i)
-                        Write(12, 245, advance = 'no') jval(i)
+                        Write(12, 193, advance = 'no') jval(i)
                         Write(12,'(a)', advance = 'no') "  "
                 End Do
         Else
@@ -157,8 +160,10 @@ Program suscep
    !!!!! Determining the g value!!!!!
         Read(11, '(a)', iostat = ios) read_line
         If (trim(read_line) .eq. 'g value') Then
-                Read(11, 193) g
-                Write(12,*) 'g value:', g
+                Read(11, *) g
+                Write(12, '(a)', advance = 'no') ' g value:'
+                Write(12, 193) g
+                Write(12,*)
         Else
                 Write(12,*) 'Erroneous g value'
                 STOP
@@ -232,6 +237,31 @@ Program suscep
         !Write(12,*) 'Magnetic Induction(Wb m-2 or T) :',  B
         B = B / 2.350517550e5_real_kind !atomic units
    !!!!! Reading in the field strength ends !!!!!
+
+   !!!!! Reading in the temperature range and step size !!!!!
+        !backspace(11)
+        Read(11,'(a)', iostat = ios) read_line
+        temp_init = 1.0
+        temp_fin = 300.0 
+        step_size = 1.0 !values have been initialised as a precaution
+        If(trim(read_line) .eq. 'Temperature range') Then
+                Read(11,*) temp_init
+                Read(11,*) temp_fin
+        End If
+        Read(11,'(a)', iostat = ios) read_line
+        If(trim(read_line) .eq. 'Step size') Then
+                Read(11,*) step_size
+        End If
+        Write(12, '(a)', advance ='no') " Temperature range to be used (K):"
+        Write(12,193, advance='no') temp_init
+        Write(12, '(a)', advance ='no') " - "
+        Write(12,193, advance='no') temp_fin
+        Write(12,*)
+        Write(12, '(a)', advance ='no') " Step size for temperature increments (K):"
+        Write(12,193, advance='no') step_size
+        Write(12,*)
+        Write(12,*)
+   !!!!! Reading in the temperature range and step size ends !!!!!
 
  End Subroutine Init
 
@@ -337,7 +367,7 @@ Program suscep
         Write (12, 168, advance = 'no')  Size(spinmat)
         Write (12,*)
 
-        Write(12,*) "Magnetic Spin Quantum no. Ms matrix:"
+        Write(12,*) "Magnetic Spin Quantum no. (Ms) matrix:"
         Do i1 = 1, Size(spin) 
                 Do j1 = 1, spinmatdim
                         If (spinmat(i1,j1) .eq. -50) Then
@@ -595,8 +625,8 @@ Subroutine suscep_calc(eigenb1, eigenb2, eigenb3)
         Real(kind = real_kind), Allocatable, Dimension (:,:) :: work
         Real(kind = real_kind),  Allocatable, Dimension (:,:) :: B_mat
         Real(kind = real_kind),  Allocatable, Dimension (:) :: ipiv
-        Real(kind = real_kind) :: N, Avo_num, beta, g,  del, conv
-        Integer(kind = int_kind) :: k, T,  m, m1, m2, info
+        Real(kind = real_kind) :: N, T, Avo_num, beta, g,  del, conv
+        Integer(kind = int_kind) :: k, m, m1, m2, info
         Integer(kind = int_kind),  Allocatable, Dimension (:,:) :: x
         Logical :: check
         Real(kind = real_kind) :: chi, temp, temp1, delt, bltz_cnst, chi_T
@@ -667,9 +697,9 @@ Subroutine suscep_calc(eigenb1, eigenb2, eigenb3)
    !!!!!Determination of Chi!!!!!     
         Write(12,*) "Temperature           Chi                  Chi*Temp"
         178 Format(F25.9)
-        193 Format(I4)
+        193 Format(F7.3)
         conv = 1.98644746e-23_real_kind
-        Do T = 1, 300 !temperature
+        Do T = temp_init, temp_fin, step_size !temperature
                 temp  = 0
                 temp1 = 0
                 Do j = 1, totalspin !equal to Size(eigenb1) 

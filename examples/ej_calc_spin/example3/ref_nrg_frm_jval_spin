@@ -1,10 +1,10 @@
  This file contains the energy (in cm-1)  of all the possible spin
  configurations using the J value set obtained.
   The J value set (cm-1) used is as follows:
-  -4.66962121608392       -2.88426905531005       -1.65094023605635     
- -0.410047244401275       -3.02741543779440       -2.43468526389922     
- -6.338752448342026E-002  -3.55076368306723       -1.71072211118987     
-  -1.55466190859457     
+  -4.66962121608392       -2.88426905531006       -1.65094023605635     
+ -0.410047244401277       -3.02741543779440       -2.43468526389921     
+ -6.338752448342028E-002  -3.55076368306722       -1.71072211118987     
+  -1.55466190859456     
  Total possible spin configurations:          32
  Average Spin Density on each metal centre:
   3.05960  3.06543  3.74695  2.98618  2.99350  3.74852

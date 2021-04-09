@@ -42,7 +42,7 @@ Program jval_calc
  Open (Unit = 16, file = 'nrg_frm_jval_formal', status = 'unknown', action = 'readwrite')
 #else              
  Open (Unit = 14, file = 'singul', action = 'read', position = 'rewind', iostat = ios)
- Open (Unit = 16, file = 'nrg_frm_jval', status = 'unknown', action = 'readwrite')
+ Open (Unit = 16, file = 'nrg_frm_jval_spin', status = 'unknown', action = 'readwrite')
  Inquire (file = 'singul', exist=exis)
  If (exis .eqv. .FALSE.) then
         Write(12,*)  "The file 'singul' is missing. Run the formal spin code first."
@@ -65,21 +65,21 @@ Program jval_calc
  Write(12,*) '               ********************************'
  Write(12,*) '               *          EJ_calc_form        *'
  Write(12,*) '               ********************************'
- Write(12,*) ' part of the J2suscep packager for calculating coupling constants'
- Write(12,*) ' and magnestic susceptability '
+ Write(12,*) ' part of the J2suscep package for calculating coupling constants'
+ Write(12,*) ' and magnetic susceptibility '
  Write(12,*) ''
- Write(12,*) ' EJ_calc_form calculates the coupling constant and singular' 
- Write(12,*) ' matrices using formal (integer) spins. This singular matrices'
- Write(12,*) ' can then be used to assist the calculation of the coupling'
- Write(12,*) ' constrants using calcilated (non-integer) spins using EJ_calc'
+ Write(12,*) ' EJ_calc_form calculates the coupling constant and determines' 
+ Write(12,*) ' singular solutions using formal (integer) spins. These singular'
+ Write(12,*) ' solutions can then be used to assist the calculation of the coupling'
+ Write(12,*) ' constants using calculated (non-integer) spins using EJ_calc_spin'
  Write(12,*) ''
  Write(12,*) ''
  Write(12,*) '-------Calculating J values from Formal Spins-------'
- Write(12,*) 'This program will convert spin denstities to formal spins no'
- Write(12,*) 'matter what you give and will use the formal spins to solve everything.'
- Write(12,*) 'If you want to use spin densities, use a different code. Two extra'
- Write(12,*) "files 'bigg' and 'singul' will also be written. 'singul' is required"
- Write(12,*) "for any code the code that uses the spin densities. The file 'bigg'"
+ Write(12,*) ' This program will convert spin densities to formal spins no matter'
+ Write(12,*) ' what you give, and will use the formal spins to solve everything.'
+ Write(12,*) ' If you want to use spin densities, use a different code. Two extra'
+ Write(12,*) " files 'bigg' and 'singul' will also be written. 'singul' is required"
+ Write(12,*) " for any code the code that uses the spin densities. The file 'bigg'"
  Write(12,*) " tells you which set of equation has large values (>50 cm-1)"
  Write(12,*)
 #else

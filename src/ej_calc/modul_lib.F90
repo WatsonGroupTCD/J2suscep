@@ -104,7 +104,7 @@ Module modul_lib
         poss_comb = comb(x,(Size(jpos) - 1))
         Write(12,*)
         Write(12,*) 'Possible combination of equations per set of equations '
-        Write(12,*) 'considered (i.e. total number of eqations -1):' 
+        Write(12,*) 'considered (i.e. total number of eqations - 1):' 
         Write(12,*) x, 'C', (Size(jpos) - 1), '=', poss_comb
         Allocate(jval_trkr(num_spin_dens_set, poss_comb, Size(jpos) - 1))
         789 Format(i5)

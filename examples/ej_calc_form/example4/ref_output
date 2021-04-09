@@ -1,21 +1,21 @@
                 ********************************
                 *          EJ_calc_form        *
                 ********************************
-  part of the J2suscep packager for calculating coupling constants
-  and magnestic susceptability 
+  part of the J2suscep package for calculating coupling constants
+  and magnetic susceptibility 
  
-  EJ_calc_form calculates the coupling constant and singular
-  matrices using formal (integer) spins. This singular matrices
-  can then be used to assist the calculation of the coupling
-  constrants using calcilated (non-integer) spins using EJ_calc
+  EJ_calc_form calculates the coupling constant and determines
+  singular solutions using formal (integer) spins. These singular
+  solutions can then be used to assist the calculation of the coupling
+  constants using calculated (non-integer) spins using EJ_calc_spin
  
  
  -------Calculating J values from Formal Spins-------
- This program will convert spin denstities to formal spins no
- matter what you give and will use the formal spins to solve everything.
- If you want to use spin densities, use a different code. Two extra
- files 'bigg' and 'singul' will also be written. 'singul' is required
- for any code the code that uses the spin densities. The file 'bigg'
+  This program will convert spin densities to formal spins no matter
+  what you give, and will use the formal spins to solve everything.
+  If you want to use spin densities, use a different code. Two extra
+  files 'bigg' and 'singul' will also be written. 'singul' is required
+  for any code the code that uses the spin densities. The file 'bigg'
   tells you which set of equation has large values (>50 cm-1)
  
  Number of Magnetic centres:           6
@@ -108,7 +108,7 @@ J15    5 6
    -4.5000   -6.0000   -6.0000   -4.5000   -6.0000   -6.0000   -6.0000   -4.5000   -6.0000   -8.0000   -6.0000   -8.0000   -6.0000   -8.0000   -6.0000
  
  Possible combination of equations per set of equations 
- considered (i.e. total number of eqations -1):
+ considered (i.e. total number of eqations - 1):
           20 C          15 =       15503
  Solving the equations
   Average J values
@@ -204,5 +204,5 @@ Std. Dev.    0.01(  0%)   0.01(  0%)   0.01(  0%)   0.01(  0%)   0.00(  0%)   0.
     -54.96699               -54.86617                     0.10082(  0.2%)
      83.33317                83.48741                     0.15425(  0.2%)
  
- Time taken(sec) in program execution   95.1695320000000     
+ Time taken(sec) in program execution   13.7759060000000     
  ---End Of File---

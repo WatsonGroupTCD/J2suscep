@@ -137,7 +137,7 @@ Contains
 
            !!!!! Determining the number of J values, reading them and printing them!!!!!
                 Read(11, '(a)', iostat = ios) read_line
-                If(trim(read_line) == 'J values') then
+                If(trim(read_line) == 'No. of J values') then
                         Read(11, 168) no_of_j_val
                 Else
                         Write(*,*) ' Erroneous No. of J values'
