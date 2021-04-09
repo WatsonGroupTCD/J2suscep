@@ -13,8 +13,11 @@ Hamiltonian
 1 2
 Field Strength
 1000.0
-
-
+Temperature range
+2
+300
+Step size
+1
 
 'no. of magnetic centres' is an integer
 the 'spin' values should be followed with a decimal point if they are integral

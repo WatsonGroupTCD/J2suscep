@@ -33,7 +33,11 @@ Hamiltonian
 2 5
 Field Strength
 1000.0
-
+Temperature range
+2
+300
+Step size
+1
 
 
 Note:
