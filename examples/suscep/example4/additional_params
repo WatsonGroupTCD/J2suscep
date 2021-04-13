@@ -1,0 +1,42 @@
+spin
+1.5
+1.5
+2.0
+2.0
+1.5
+2.0
+J values
+-3.17
+-2.43
+1.23
+-3.00
+-2.68
+-2.69
+-2.73
+0.11
+-1.82
+-1.41
+-1.33
+-0.64
+-2.34
+-1.46
+-2.01
+g value
+1.997
+Field Strength
+1000.0
+Temperature range
+2
+300
+Step size
+1
+
+
+Note:
+'No. of J values' should be an integer
+'J values' should be followed with a decimal point if they are integral
+The Field strength has to be in Oersted
+Temperature and step size values are in Kelvin
+all the words used have to be exactly the same since they are used as checkpoint to determine if
+that particular information is present in the file or not
+
