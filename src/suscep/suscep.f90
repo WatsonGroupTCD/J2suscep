@@ -45,14 +45,15 @@ Program suscep
  Real(kind = real_kind), Dimension(:,:), Allocatable :: spinmat, basis
  ! spinmat stores all possible Ms values for each metal centre
  ! basis stores all possible combinations of Ms values of all metal centres
- Character (Len = 100) :: FileName, read_line, Outfile, inp_file
+ Character (Len = 100) :: read_line, Outfile, inp_file1, inp_file2
  ! inp_file stores the name of the input file
  ! Outfile stores the name of the output file
  Logical :: EndOfFile
- Call Get_Command_Argument(1, FileName)
- inp_file = trim(Filename) !// '.inp'
- Outfile = trim(Filename) // '.out'
- Open (Unit = 11, file = inp_file, action = 'read', position = 'rewind', iostat = ios)
+ Call Get_Command_Argument(1, inp_file1)
+ Call Get_Command_Argument(2, inp_file2)
+ Outfile = trim(inp_file1) // '.out'
+ Open (Unit = 10, file = inp_file1, action = 'read', position = 'rewind', iostat = ios)
+ Open (Unit = 11, file = inp_file2, action = 'read', position = 'rewind', iostat = ios)
  Open (Unit = 12, file = Outfile, status = 'unknown', action = 'readwrite')
  totalspin = 1
  Rewind(11)
@@ -75,6 +76,7 @@ Program suscep
  Call HamilForm(totalspin)
  Deallocate (spin, basis, pseudospin, hamil)
  Deallocate (spinmat, posval, jval, jmatx, jmaty)
+ Close(10)
  Close(11)
  Close(12)
 
@@ -82,7 +84,7 @@ Program suscep
  Contains
 
  Subroutine Init()
-   !!!!! Declaration and initailisation of variables !!!!!
+   !!!!! Declaration and initialisation of variables !!!!!
         Character (Len = 1) :: buff
         Logical :: check, check1
         Integer(kind = int_kind) :: i1, j1
@@ -101,9 +103,9 @@ Program suscep
 
    !!!!! Determining number of magnetic centres (i.e. metal atoms) !!!!!
    !!!!! Initialisation of spin for each metal centre !!!!!
-        Read(11, '(a)', iostat = ios) read_line
+        Read(10, '(a)', iostat = ios) read_line
         If(trim(read_line) .eq. 'magnetic centres') Then
-                Read(11, 168) dmension
+                Read(10, 168) dmension
         Else 
                 Write(*,*) ' Erroneous number of magnetic centres in the input file' 
                 STOP 
@@ -115,6 +117,71 @@ Program suscep
                 spin(i) = 0
         End Do
    !!!!! Determination of magnetic centres and their initialization ends !!!!!
+
+   !!!!! Determining the number of J values, reading them and printing them!!!!!
+        Read(10, '(a)', iostat = ios) read_line
+        If(trim(read_line) .eq. 'No. of J values') then
+                Read(10, 168) no_of_j_val 
+        Else
+                Write(*,*) ' Erroneous No. of J values'
+                STOP 
+        End If
+        Allocate(jval(no_of_j_val))
+        !Read(10, '(a)', iostat = ios) read_line
+   !!!!! J value determination ends !!!!!
+
+      !!!!! Reading in and printing the Spin Hamiltonian !!!!!
+        Read(10, '(a)', iostat = ios) read_line
+        If(trim(read_line) .eq. 'Hamiltonian') Then
+                Read(10, '(a)', iostat = ios) read_line
+        Else
+                Write(*,*) 'No Hamiltonian'
+                STOP
+        End If
+
+
+   !!!!! Determining the number of variables in the Hamiltonian !!!!!
+        i1 = 0
+        Do While (trim(read_line) .ne. 'Hamiltonian Ends')
+                If((trim(read_line) .eq. '****') .OR. (trim(read_line) .eq. 'Hamiltonian Ends')) Then
+                        If (i1 .gt. j1) Then
+                                j1 = i1
+                        End If
+                        i1 = 0
+                Else
+                        i1 = i1 + 1
+                End If
+                Read(10, '(a)', iostat = ios) read_line
+        End Do
+        If (i1 .gt. j1) Then
+                j1 = i1
+        End If
+        Rewind (10)
+        Read(10, '(a)', iostat = ios) read_line
+        Do While (trim(read_line)  .ne. 'Hamiltonian')
+                Read(10, '(a)', iostat = ios) read_line
+        End Do
+        j_mat_col = j1 !+ 1
+        Allocate(jmatx(no_of_j_val, j_mat_col),jmaty(no_of_j_val, j_mat_col))
+        jmatx = 0
+        jmaty = 0
+   !!!!! Reading in each interaction of the spin Hamiltonian !!!!!
+        i1 = 1
+        j1 = 1
+        Read(10, '(a)', iostat = ios) read_line
+        Do While (trim(read_line) .ne. 'Hamiltonian Ends')
+                If(trim(read_line) .eq. '****') Then
+                        i1 = i1 + 1
+                        j1 = 1
+                Else
+                        Backspace(10)
+                End If
+                Read(10, *) jmatx(i1,j1), jmaty(i1,j1)
+                j1 = j1 + 1
+                Read(10, '(a)') read_line
+        End Do
+   !!!!! Reading and printing of the Spin Hamiltonian ends !!!!!
+
 
    !!!!! Reading in the actual values of spin for each centre !!!!!
         Read(11, '(a)', iostat = ios) read_line
@@ -128,20 +195,13 @@ Program suscep
         Do i = 1, dmension
                 If(spin(i) .eq. 0) Then
                         Write(*,*) "Erroneous spin values"
-                        STOP 
+                        STOP
                 End If
         End Do
    !!!!! Reading of spins ends !!!!!
 
+
    !!!!! Determining the number of J values, reading them and printing them!!!!!
-        Read(11, '(a)', iostat = ios) read_line
-        If(trim(read_line) .eq. 'No. of J values') then
-                Read(11, 168) no_of_j_val 
-        Else
-                Write(*,*) ' Erroneous No. of J values'
-                STOP 
-        End If
-        Allocate(jval(no_of_j_val))
         Read(11, '(a)', iostat = ios) read_line
         If(trim(read_line) .eq. 'J values') then
                 Write(12,'(a)', advance = 'no') ' The J values(cm-1) given are: '
@@ -152,10 +212,14 @@ Program suscep
                 End Do
         Else
                 Write(*,*) ' Erroneous J values'
-                STOP 
+                STOP
         End If
         Write(12,*)
    !!!!! J value determination ends !!!!!
+
+
+
+
 
    !!!!! Determining the g value!!!!!
         Read(11, '(a)', iostat = ios) read_line
@@ -170,62 +234,9 @@ Program suscep
         End If
    !!!!! G value determination ends!!!!!
 
-   !!!!! Reading in and printing the Spin Hamiltonian !!!!!
-        Read(11, '(a)', iostat = ios) read_line
-        If(trim(read_line) .eq. 'Hamiltonian') Then
-                Read(11, '(a)', iostat = ios) read_line
-        Else
-                Write(*,*) 'No Hamiltonian'
-                STOP 
-        End If
-
-   !!!!! Determining the number of variables in the Hamiltonian !!!!!
-        i1 = 0
-        Do While (trim(read_line) .ne. 'Field Strength')
-                If((trim(read_line) .eq. '****') .OR. (trim(read_line) .eq. 'Field Strength')) Then
-                        If (i1 .gt. j1) Then
-                                j1 = i1
-                        End If
-                        i1 = 0
-                Else
-                        i1 = i1 + 1 
-                End If
-                Read(11, '(a)', iostat = ios) read_line
-        End Do
-        If (i1 .gt. j1) Then
-                j1 = i1
-        End If
-        Rewind (11)
-        Read(11, '(a)', iostat = ios) read_line
-        Do While (trim(read_line)  .ne. 'Hamiltonian')
-                Read(11, '(a)', iostat = ios) read_line
-        End Do 
-        j_mat_col = j1 !+ 1
-        Allocate(jmatx(no_of_j_val, j_mat_col),jmaty(no_of_j_val, j_mat_col))
-        jmatx = 0
-        jmaty = 0
-        i1 = 1
-        j1 = 1
-   !!!!! Reading in each interaction of the spin Hamiltonian !!!!!
-        i1 = 1
-        j1 = 1
-        Read(11, '(a)', iostat = ios) read_line
-        Do While (trim(read_line) .ne. 'Field Strength')
-                If(trim(read_line) .eq. '****') Then
-                        i1 = i1 + 1
-                        j1 = 1
-                Else
-                        Backspace(11)
-                End If
-                Read(11, *) jmatx(i1,j1), jmaty(i1,j1)
-                j1 = j1 + 1
-                Read(11, '(a)') read_line
-        End Do
-   !!!!! Reading and printing of the Spin Hamiltonian ends !!!!!
 
    !!!!! Reading in the field strength !!!!!
         166 Format(F10.3)
-        backspace(11)
         Read(11,'(a)', iostat = ios) read_line
         If(trim(read_line) .eq. 'Field Strength') Then
                 Read(11,166) field_str !Field strength needs to be in oersted
