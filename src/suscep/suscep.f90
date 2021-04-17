@@ -45,15 +45,17 @@ Program suscep
  Real(kind = real_kind), Dimension(:,:), Allocatable :: spinmat, basis
  ! spinmat stores all possible Ms values for each metal centre
  ! basis stores all possible combinations of Ms values of all metal centres
- Character (Len = 100) :: read_line, Outfile, inp_file1, inp_file2
+ Character (Len = 100) :: read_line, Outfile, inp_file1, inp_file2,inp_file3
  ! inp_file stores the name of the input file
  ! Outfile stores the name of the output file
  Logical :: EndOfFile
  Call Get_Command_Argument(1, inp_file1)
  Call Get_Command_Argument(2, inp_file2)
+ Call Get_Command_Argument(3, inp_file3)
  Outfile = trim(inp_file1) // '.out'
  Open (Unit = 10, file = inp_file1, action = 'read', position = 'rewind', iostat = ios)
  Open (Unit = 11, file = inp_file2, action = 'read', position = 'rewind', iostat = ios)
+ Open (Unit = 13, file = inp_file3, action = 'read', position = 'rewind', iostat = ios)
  Open (Unit = 12, file = Outfile, status = 'unknown', action = 'readwrite')
  totalspin = 1
  Rewind(11)
@@ -130,7 +132,7 @@ Program suscep
         !Read(10, '(a)', iostat = ios) read_line
    !!!!! J value determination ends !!!!!
 
-      !!!!! Reading in and printing the Spin Hamiltonian !!!!!
+      !!!!! Reading in the Spin Hamiltonian !!!!!
         Read(10, '(a)', iostat = ios) read_line
         If(trim(read_line) .eq. 'Hamiltonian') Then
                 Read(10, '(a)', iostat = ios) read_line
@@ -200,40 +202,18 @@ Program suscep
         End Do
    !!!!! Reading of spins ends !!!!!
 
-
-   !!!!! Determining the number of J values, reading them and printing them!!!!!
-        Read(11, '(a)', iostat = ios) read_line
-        If(trim(read_line) .eq. 'J values') then
-                Write(12,'(a)', advance = 'no') ' The J values(cm-1) given are: '
-                Do i = 1, no_of_j_val
-                        Read(11, 245) jval(i)
-                        Write(12, 193, advance = 'no') jval(i)
-                        Write(12,'(a)', advance = 'no') "  "
-                End Do
-        Else
-                Write(*,*) ' Erroneous J values'
-                STOP
-        End If
-        Write(12,*)
-   !!!!! J value determination ends !!!!!
-
-
-
-
-
    !!!!! Determining the g value!!!!!
         Read(11, '(a)', iostat = ios) read_line
         If (trim(read_line) .eq. 'g value') Then
                 Read(11, *) g
                 Write(12, '(a)', advance = 'no') ' g value:'
                 Write(12, 193) g
-                Write(12,*)
+                !Write(12,*)
         Else
                 Write(12,*) 'Erroneous g value'
                 STOP
         End If
    !!!!! G value determination ends!!!!!
-
 
    !!!!! Reading in the field strength !!!!!
         166 Format(F10.3)
@@ -273,6 +253,23 @@ Program suscep
         Write(12,*)
         Write(12,*)
    !!!!! Reading in the temperature range and step size ends !!!!!
+
+   !!!!! Determining the number of J values, reading them and printing them!!!!!
+        Read(13, '(a)', iostat = ios) read_line
+        If(trim(read_line) .eq. 'J values') then
+                Write(12,'(a)', advance = 'no') ' The J values(cm-1) given are: '
+                Do i = 1, no_of_j_val
+                        Read(13, 245) jval(i)
+                        Write(12, 193, advance = 'no') jval(i)
+                        Write(12,'(a)', advance = 'no') "  "
+                End Do
+        Else
+                Write(*,*) ' Erroneous J values'
+                STOP
+        End If
+        Write(12,*)
+        Write(12,*)
+   !!!!! J value determination ends !!!!!
 
  End Subroutine Init
 

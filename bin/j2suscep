@@ -2,18 +2,47 @@
 exe=$1
 if1=$2
 if2=$3 
+if3=$4
 
-if [ "$exe" = "-f" ]; then
+if [ "$exe" = "-f" ]; then	#executing only ej_calc_form
   ej_calc_form $if1 $if2
-elif [ "$exe" = "-s" ]; then
-  if test -f "singul"; then
+elif [ "$exe" = "-s" ]; then	
+  if test -f "singul"; then	#executing ej_calc_spin with or without ej_calc_form
     ej_calc_spin $if1 $if2
-  else 
+  else
     ej_calc_form $if1 $if2
     ej_calc_spin $if1 $if2
   fi
-elif [ "$exe" = "-S" ]; then
-  suscep $if1
+elif [ "$exe" = "-S" ]; then	#executing only suscep
+  suscep $if1 $if2 $if3
+elif [ "$exe" = "-a" ]; then	#executing all codes together
+  ej_calc_form $if1 $if2
+  ej_calc_spin $if1 $if2
+  echo "J values" > jvals
+  while read line; do
+          IFS=' '
+          re='^[0-9]+$'
+          array=($line)
+	  if [[ "${array[0]}" = "No." && "${array[1]}" = "of" ]]
+	  then
+		num_jval=${array[7]}
+	  fi
+          if [[ "${array[0]}" = "Final" && "${array[1]}" = "results" ]] 
+          then
+		read line
+		read line
+		read line
+		read line
+		array=($line)
+		for ((i=1;i<=$num_jval;i++))
+			do 
+			echo ${array[$i]} >> jvals
+			
+		done	
+          fi
+  done < $if1"_spin.out"
+  suscep $if1 $4 "jvals"
+
 fi
 
 
