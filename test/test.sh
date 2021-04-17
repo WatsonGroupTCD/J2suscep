@@ -27,7 +27,13 @@ do
 	echo " "
 	echo "Running "$a$i" in "$exe
 	echo " "
-	../../../bin/$exe  $b$i $c
+	if [ "$exe" = "ej_calc_form" ]; then
+		$exe  $b$i $c
+	elif [ "$exe" = "ej_calc_spin" ]; then
+		$exe  $b$i $c
+	elif [ "$exe" = "suscep" ]; then
+		$exe  $b$i "additional_params" "jvals"
+	fi
 
 # awk script to compare the results
         if [ "$exe" = "ej_calc_form" ]; then
