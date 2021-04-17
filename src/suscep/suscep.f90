@@ -189,7 +189,7 @@ Program suscep
         Read(11, '(a)', iostat = ios) read_line
         If(trim(read_line) .eq. 'spin') Then
                 Do i = 1, dmension
-                        Read(11, 189) spin(i)
+                        Read(11, *) spin(i)
                         pseudospin(i) = i
                         totalspin = totalspin * (2*spin(i) + 1)
                 End Do
