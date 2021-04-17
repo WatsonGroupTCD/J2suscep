@@ -94,7 +94,7 @@ Program suscep
         check1 = .False.
         168 Format(i2)
         189 Format(F4.1)
-        193 Format(F7.3)
+        193 Format(F8.4)
         245 Format(F22.17)
         pi = 4.0_real_kind*DAtan(1.0_real_kind) !4.0*Atan(1.0) is the value of pi
         i1 = 0
@@ -259,7 +259,7 @@ Program suscep
         If(trim(read_line) .eq. 'J values') then
                 Write(12,'(a)', advance = 'no') ' The J values(cm-1) given are: '
                 Do i = 1, no_of_j_val
-                        Read(13, 245) jval(i)
+                        Read(13, *) jval(i)
                         Write(12, 193, advance = 'no') jval(i)
                         Write(12,'(a)', advance = 'no') "  "
                 End Do
