@@ -48,10 +48,13 @@ can be modelled but this procedure results in a large number of solutions,
 that have to be averaged in some sensible way. Additionally, the problem of 
 singular solutions also arises and such solutions need to be identified and removed. 
 At the moment however, there is no convenient way to do so. The purpose of this 
-package is to provide a means to accomplish this arduous task. Additionally, for 
-completion, this package can also calculate the temperature dependence of magnetic 
+package is to provide a means to accomplish this arduous task. Additionally, 
+this package can also calculate the temperature dependence of magnetic 
 susceptibility thereby enabling the comparison of the computational data to 
-experiment.
+experiment. Although there are other alternatives available to the suscep code 
+like MAGPACK [@magpack] and PHI [@phi], the two codes together provide a one stop solution for the 
+calculation of coupling constants and the determination of the magnetic susceptibility 
+using these coupling constants.
 
 
 # `J2suscep`
@@ -72,10 +75,7 @@ the coupling constants, for comparison to the original DFT data.
 The suscep code calculates the temperature dependence of magnetic susceptibility 
 using the coupling constants. Similar to ej_calc, the Hamiltonian is flexible and 
 any number of coupling constants can be provided for the calculation of the magnetic 
-susceptibility. Although there are other alternatives available to the suscep code 
-[@magpack; @phi], the two codes together provide a one stop solution for the 
-calculation of coupling constants and the determination of the magnetic susceptibility 
-using these coupling constants.
+susceptibility. 
 
 To illustrate the use of this package, we present the example of the {$Mn_6$} complex 
 shown in Figure 1 (a) [@Mn6]. The Mn atoms are arranged in an octahedra resulting in 
