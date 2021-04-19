@@ -1,0 +1,13 @@
+# compile files
+*.o
+*.mod
+
+# executables 
+bin/ej_calc_form  
+bin/ej_calc_spin  
+bin/suscep 
+
+# makefile.include
+src/makefile.include
+src/ej_calc/makefile.include  
+src/suscep/makefile.include
