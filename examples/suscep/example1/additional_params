@@ -1,8 +1,6 @@
 spin
 1.5
 1.5
-J values
--84.07
 g value
 2.02
 Field Strength
@@ -14,8 +12,6 @@ Step size
 1
 
 Note:
-'No. of J values' should be an integer
-'J values' should be followed with a decimal point if they are integral
 The Field strength has to be in Oersted
 Temperature and step size values are in Kelvin
 all the words used have to be exactly the same since they are used as checkpoint to determine if
