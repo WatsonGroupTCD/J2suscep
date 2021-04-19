@@ -14,49 +14,64 @@ Program suscep
  Integer, parameter :: real_kind = REAL64 !Double precision
  Integer, parameter :: comp_kind = REAL64 !Double precision
  Integer(kind = int_kind) :: ios 
+
  Real(kind = real_kind) :: pi, temp_init, temp_fin, step_size
  !pi stores the value of pi
  !temp_init and temp_fin store the temperature range
  !step_size stores the step size for temperature increment
+
  Integer(kind = int_kind) :: i, j, dmension, no_of_j_val, totalspin, spin_mat_col, j_mat_col
  ! dmension is the number of magnetic centres
  ! no_of_j_val stores the total number of unique J-values defined for the Hamiltonian
  ! totalspin stores the row (or column) size of the spin hamiltonian matrix
  ! spin_mat_col stores the column size of the spin matrix 
  ! j_mat_col stores the column size of the J value matrix
+
  Real(kind = real_kind), Dimension(:), Allocatable :: spin, jval, posval
  ! spin stores the S value (i.e. total number of unpaired electrons/2) for each
  !metal centre 
  ! jval stores the different J-values in use
  ! posval description given in the subroutine FormBasis
+
  Integer(kind = int_kind), Dimension(:), Allocatable :: pseudospin
  ! pseudospin is simply a pointer pointing to the position of each metal centre
+
  Integer(kind = int_kind), Dimension(:,:), Allocatable :: jmatx, jmaty
  ! jmatx and jmaty are the J-value matrix storing information about which J-values 
  !are associated with different spin pairs
+
  Real (kind = real_kind), Dimension(:,:), Allocatable :: hamil 
  ! hamil is the spin hamiltonian matrix
+
  Real(kind = real_kind) :: g
  ! g is the 'g' value/tensor (isotropic behaviour has been assumed here) 
+
  Real(kind = real_kind) :: B, vac_perm, field_str
  ! B = magnetic induction(Wb m-2)
  ! field_str stores the strength of the applied field, B = magnetic induction(Wb m-2)
  ! vac_perm = permeability of free space in vacuum(Wb A-1 m-1) = (4*pi)*(10^-7)
+
  Real(kind = real_kind), Dimension(:,:), Allocatable :: spinmat, basis
  ! spinmat stores all possible Ms values for each metal centre
  ! basis stores all possible combinations of Ms values of all metal centres
+
  Character (Len = 100) :: read_line, Outfile, inp_file1, inp_file2,inp_file3
  ! inp_file stores the name of the input file
  ! Outfile stores the name of the output file
+
  Logical :: EndOfFile
+
  Call Get_Command_Argument(1, inp_file1)
  Call Get_Command_Argument(2, inp_file2)
  Call Get_Command_Argument(3, inp_file3)
+
  Outfile = trim(inp_file1) // '.out'
+
  Open (Unit = 10, file = inp_file1, action = 'read', position = 'rewind', iostat = ios)
  Open (Unit = 11, file = inp_file2, action = 'read', position = 'rewind', iostat = ios)
  Open (Unit = 13, file = inp_file3, action = 'read', position = 'rewind', iostat = ios)
  Open (Unit = 12, file = Outfile, status = 'unknown', action = 'readwrite')
+
  totalspin = 1
  Rewind(11)
  EndOfFile = .False.
@@ -626,6 +641,7 @@ End Subroutine Zeeman
 
 
 Subroutine suscep_calc(eigenb1, eigenb2, eigenb3)
+ Implicit None
    !!!!! Declaration and allocation of variables and arrays !!!!!
         Real(kind = real_kind), Allocatable, Dimension (:) :: eigenb1, eigenb2, eigenb3
         Real(kind = real_kind), Allocatable, Dimension (:,:) :: c
@@ -634,6 +650,10 @@ Subroutine suscep_calc(eigenb1, eigenb2, eigenb3)
         Real(kind = real_kind),  Allocatable, Dimension (:,:) :: B_mat
         Real(kind = real_kind),  Allocatable, Dimension (:) :: ipiv
         Real(kind = real_kind) :: N, T, Avo_num, beta, g,  del, conv
+       
+        Integer(kind = int_kind) :: itemp, temp_steps             
+! integer counter for temp loop and number of steps 
+
         Integer(kind = int_kind) :: k, m, m1, m2, info
         Integer(kind = int_kind),  Allocatable, Dimension (:,:) :: x
         Logical :: check
@@ -652,9 +672,9 @@ Subroutine suscep_calc(eigenb1, eigenb2, eigenb3)
         delt = B/10.0_real_kind
         Allocate(work(m,m))
         Allocate(ipiv(m))
-        T = 1 !Temperature in Kelvin 
         bltz_cnst = 0.695039_real_kind !cm-1 K-1 
-        beta = 1 / (T * bltz_cnst) 
+!        T = 1 !Temperature in Kelvin 
+!        beta = 1 / (T * bltz_cnst) 
    !!!!! Declaration and allocation part ends !!!!!
 
    !!!!! Assignment of values to the B matrices and the eigen value matrices !!!!!
@@ -707,7 +727,16 @@ Subroutine suscep_calc(eigenb1, eigenb2, eigenb3)
         178 Format(F25.9)
         193 Format(F7.3)
         conv = 1.98644746e-23_real_kind
-        Do T = temp_init, temp_fin, step_size !temperature
+
+! calculate number of steps and step size through temperture
+        temp_steps = int ((temp_fin - temp_init)/step_size) + 1 
+
+! initial temperature 
+        T = temp_init 
+
+!        Do T = temp_init, temp_fin, step_size !temperature
+        Do itemp  =  1, temp_steps 
+                
                 temp  = 0
                 temp1 = 0
                 Do j = 1, totalspin !equal to Size(eigenb1) 
@@ -719,6 +748,8 @@ Subroutine suscep_calc(eigenb1, eigenb2, eigenb3)
                 Write(12, 193, advance = 'no') T
                 Write(12, 178, advance = 'no') chi
                 Write(12, 178) chi_T
+! increment temperature
+                T = T + step_size 
         End Do
    !!!!!Determination ends!!!!!
 
