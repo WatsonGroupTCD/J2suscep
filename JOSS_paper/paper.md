@@ -51,10 +51,11 @@ At the moment however, there is no convenient way to do so. The purpose of this
 package is to provide a means to accomplish this arduous task. Additionally, 
 this package can also calculate the temperature dependence of magnetic 
 susceptibility thereby enabling the comparison of the computational data to 
-experiment. Although there are other alternatives available to the suscep code 
-like MAGPACK [@magpack] and PHI [@phi], the two codes together provide a one stop solution for the 
-calculation of coupling constants and the determination of the magnetic susceptibility 
-using these coupling constants.
+experiment. Although other codes like MAGPACK [@magpack] and PHI [@phi]
+are available for the calculation of the mangnetic susceptibility, 
+this package provides a one stop solution for the calculation of coupling 
+constants and the determination of the magnetic susceptibility using these 
+coupling constants.
 
 
 # `J2suscep`
