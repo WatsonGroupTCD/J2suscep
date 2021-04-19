@@ -78,8 +78,9 @@ calculation of coupling constants and the determination of the magnetic suscepti
 using these coupling constants.
 
 To illustrate the use of this package, we present the example of the {$Mn_6$} complex 
-shown in Figure 1 (a) [@Mn6]. Each Mn centre in this complex has 4 cis- and 1 trans- 
-neighbours which interact via the Cl^-^ and the phosphonate ligands. One requires 2 J-values 
+shown in Figure 1 (a) [@Mn6]. The Mn atoms are arranged in an octahedra resulting in 
+each Mn being cis to 4 other Mn atoms and trans to 1 Mn atom with the Mn atoms 
+interacting via Cl^-^ and phosphonate bridges. One requires 2 J-values 
 to account for these cis- and trans- interactions between Mn centres. Modelling of 6 states 
 for the calculation of the 2 J-values results in 60 possible solutions and using ej_calc, 
 the final values were determined to be -1.28 (cis-coupling) and -3.48 cm^-1^ (trans-coupling) 
