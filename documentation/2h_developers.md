@@ -64,6 +64,18 @@
     <td class="tg-0lax"> permeability of free space in vacuum. </td>
   </tr>
   <tr>
+  <tr>
+    <td class="tg-0lax"> init_temp </td>
+    <td class="tg-0lax"> stores the minimum temperature for the susceptibility measurement. </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax"> fin_temp </td>
+    <td class="tg-0lax"> stores the maximum temperature for the susceptibility measurement. </td>
+  </tr>
+  <tr>
+    <td class="tg-0lax"> step_size </td>
+    <td class="tg-0lax"> stores the step size for temperature increments. </td>
+  </tr>
     <td class="tg-0lax"> spinmat </td>
     <td class="tg-0lax"> stores all possible M<sub>s</sub> values for each metal centre. </td>
   </tr>

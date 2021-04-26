@@ -3,7 +3,7 @@
 
 <h2>Example 1</h2>
 <p>To understand the construction of the input files, let us take the example of a dimeric Mn complex shown in Figure 1 below.
-Here the Mn centres are in +IV oxidation state (d3 spin configuration).
+Here the Mn centres are in +IV oxidation state (d<sup>3</sup> spin configuration).
 <font face="Arial, Helvetica, sans-serif" size="-2">[<a href="refs.htm#Libby" class="showTip Libby">Libby</a>]</font></p>
 
 <p align="center"><img src="img/mn2.jpg" alt="Mn2 structure"><br /><b><i>Structure of the {Mn<sup>IV</sup><sub>2</sub>} complex. Colour scheme: Mn (dark blue), C (black), 
@@ -11,35 +11,55 @@ N (blue) and O (red). Hydrogen atoms have been removed for clarity.</i></b></p>
 <p>The Mn centres in this complex interact with each other via the oxo groups and the Hamiltonian for this complex can be written as follows:</p>
 <center> <font face="Courier New, Courier, monospace" size="-2">&nbsp;&nbsp;&nbsp;&nbsp;</font>H&#770 = -2J&lt;s<sub>1</sub>.s<sub>2</sub>&gt; </center>
 
-<p>The input file using the Hamiltonian mentioned above can be prepared as described below. The following additional parameters are used to complete the file
- – J1: -84.07 cm-1, g-value: 2.02, field strength: 1000 oersted. </p>
- 
+<p>The input files using the Hamiltonian mentioned above can be prepared as described below. The following additional parameters are used to complete the file
+ – J1: -84.0722 cm<sup>-1</sup>, g-value: 2.02, field strength: 1000 oersted, temperature range: 2-300 K, temperature step: 1 K. </p>
+ <h3> File1</h3>
  <pre>
 magnetic centres
 2
-spin
-1.5
-1.5
 No. of J values
 1
-J values
--84.07
-g value
-2.02
 Hamiltonian
 1 2
-Field Strength
-1000.0
+Hamiltonian Ends
  </pre>
 <br>
 
-<p>Here the number 2 in the second line specifies that there are 2 magnetic centres. This is followed by the specification of 
-the spin on each centre. In this example, each centre has 3 unpaired electrons (Mn(IV) centres) and hence a spin value of 1.5. It is necessary to 
-specify this value up to the first decimal place even if the spin value is a whole number. After specifying the spin on each centre, 
-the details about the Hamiltonian are provided. In this example, 1 J-value is required and the magnitude of the J-value (-84.07 cm<sup>-1</sup>) 
-is described following the number of J-values. This is followed by the specification of the g-value 
-and the Hamiltonian which is then followed by the magnitude of the field strength in Oersted units (1000.0 in this case).</p>
+<p>Here the number 2 in the second line specifies that there are 2 magnetic centres. This is followed by the number of J-values and  
+the details about the Hamiltonian. 
+
+<h3> File2 (additional parameters)</h3>
+<pre>
+spin
+1.5
+1.5
+g value
+2.02
+Field Strength
+1000.0
+Temperature range
+2
+300
+Step size
+1
+</pre>
+<br>
+
+<p>This file starts with the specification of 
+the spin on each centre. In this example, each centre has 3 unpaired electrons (Mn(IV) centres) and hence a spin value of 1.5. 
+This is followed by the specification of the g-value 
+which is then followed by the magnitude of the field strength in Oersted units (1000.0 in this case). The susceptibility will
+be determined in the temperature range of 2-300 K with 1 K increments.</p>
 <p>This example input file and the resultant output file have also been provided as separate files in the package. </p>
+
+<h3> File3 (J-values)</h3>
+<pre>
+J values
+-84.0722
+</pre>
+<br>
+<p>In this file the details about the J-values are provided. In this example, 1 J-value is required and the magnitude of the J-value (-84.0722 cm<sup>-1</sup>) follows the term "J values".</p>
+
 
 
 <h2>Example 2</h2>
@@ -53,39 +73,61 @@ Mn (dark blue), C (black), N (blue) and O (red). Hydrogen atoms have been remove
 for this system can be written as follows:</p>
 <center> <font face="Courier New, Courier, monospace" size="-2">&nbsp;&nbsp;&nbsp;&nbsp;</font>H&#770 = -2J[&lt;s<sub>1</sub>.s<sub>2</sub>&gt; + 
 &lt;s<sub>1</sub>.s<sub>3</sub>&gt; + &lt;s<sub>2</sub>.s<sub>3</sub>&gt;] </center>
-<p>The input file using the Hamiltonian mentioned above can be prepared as described below. The following additional parameters are used to complete the file
- – J1: -9.02 cm-1, g-value: 1.996, field strength: 1000 oersted. </p>
+<p>The input files using the Hamiltonian mentioned above can be prepared as described below. The following additional parameters are used to complete the file
+ – J1: -9.0221 cm<sup>-1</sup>, g-value: 1.996, field strength: 1000 oersted, temperature range: 2-300 K, temperature step: 1 K. </p>
 
+<h3> File1</h3>
 <pre>
 magnetic centres
 3
-spin
-2.0
-2.0
-2.0
 No. of J values
 1
-J values
--9.02
-g value
-1.996
 Hamiltonian
 1 2
 1 3
 2 3
+Hamiltonian Ends
+</pre>
+<br>
+
+
+<p>Here the number 3 in the second line specifies that there are 3 magnetic centres. This is again followed by the number of J-values (1) and  
+the details about the Hamiltonian. 
+
+
+<h3> File2 (additional parameters)</h3>
+<pre>
+spin
+2.0
+2.0
+2.0
+g value
+1.996
 Field Strength
 1000.0
+Temperature range
+2
+300
+Step size
+1
 </pre>
+<br>
 
-<p>Here the number 3 in the second line specifies that there are 3 magnetic centres. This is followed by the specification of 
-the spin on each centre. In this example, each centre has 4 unpaired electrons (Mn(III) centres) and hence a spin value of 2. It is necessary to 
-specify this value up to the first decimal place even if the spin value is a whole number. After specifying the spin on each centre, 
-the details about the Hamiltonian are provided. In this example, 1 J-value is required and the magnitude of the J-value (-9.02 cm<sup>-1</sup>) 
-is described following the number of J-values. This is followed by the specification of the g-value 
-and the Hamiltonian which is then followed by the magnitude of the field strength in Oersted units (1000.0 in this case).</p>
+<p>This file starts with the specification of 
+the spin on each centre. In this example, each centre has 4 unpaired electrons (Mn(III) centres) and hence a spin value of 2. 
+This is followed by the specification of the g-value 
+which is then followed by the magnitude of the field strength in Oersted units (1000.0 in this case). The susceptibility will
+be determined in the temperature range of 2-300 K with 1 K increments.</p>
 <p>This example input file and the resultant output file have also been provided as separate files in the package. </p>
 
+<h3> File3 (J-values)</h3>
+<pre>
+J values
+-9.0221
+</pre>
+<br>
 
+<p>In this file the details about the J-values are provided. In this example, 1 J-value is required and the magnitude of the J-value (-9.0221 cm<sup>-1</sup>) follows the term "J values".</p>
 
 
 <h2>Example 3, 4 and 5</h2>
@@ -99,7 +141,7 @@ N (blue) and O (red). Hydrogen atoms have been removed for clarity.</i></b></p>
 Each Mn centre in this complex has 1 trans- and 4 cis- neighbours and one requires 2 J-values to account for these cis- and trans- interactions between Mn centres.
 <font face="Arial, Helvetica, sans-serif" size="-2">[<a href="refs.htm#Tandon" class="showTip Tandon">Tandon</a>]</font>   </p>
 
-<p>In example 3, four of the Mn centres, Mn1, Mn2, Mn4 and Mn5, are in +IV oxidation state (d3 spin configuration) while the others are in +III oxidation state. 
+<p>In example 3, four of the Mn centres, Mn1, Mn2, Mn4 and Mn5, are in +IV oxidation state (d<sup>3</sup> spin configuration) while the others are in +III oxidation state. 
 This decreases the overall symmetry of the complex. Therefore, the Hamiltonian for this complex can be written as follows:</p>
 <center> <font face="Courier New, Courier, monospace" size="-2">&nbsp;&nbsp;&nbsp;&nbsp;</font>H&#770 = -2J<sub>1</sub>[&lt;s<sub>1</sub>.s<sub>2</sub>&gt;]
 -2J<sub>2</sub>[&lt;s<sub>1</sub>.s<sub>6</sub>&gt;] -2J<sub>3</sub> [&lt;s<sub>2</sub>.s<sub>6</sub>&gt;]	

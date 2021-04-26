@@ -13,7 +13,7 @@
 </thead>
 <tbody>
   <tr>
-    <td class="tg-0pky">Number of Magnetic centers:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6 <br>The J values(cm-1) given are:<br>-3.47999999999999998 <br>-1.28000000000000003 <br>g value: 1.99700000000000<br>.........<br>.........<br></td>
+    <td class="tg-0pky">Number of Magnetic centers:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6 <br> g value:  1.9980 <br> Temperature range to be used (K):  2.0000 - 300.0000<br>.........<br>.........<br></td>
     <td class="tg-0pky">Details of the input parameters and the Hamiltonian that will be used.</td>
   </tr>
   <tr>

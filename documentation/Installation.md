@@ -21,6 +21,28 @@ in the 'bin' directory outside the 'src' directory.</p>
 make clean
 make
 </pre>
+
+<p> Once the installation is complete, either copy/move the contents of the bin folder to a directory in your pathway (the 'PATH' environment variable) or add the bin to the pathway. </p>
+<p>In bash, the bin can be added to the pathway by adding the path to the ~/.bashrc or ~/.bash_profile file: </p>
+<pre>
+export PATH="$PATH:/path_to_J2suscep_directory/bin"
+</pre>
+
+<p>To load this change, either restart the terminal or use the 'source' command: </p>
+<pre>
+source ~/.bashrc
+</pre>
+<p>or</p>
+<pre>
+source ~/.bash_profile
+</pre>
+
+<p>To make sure that the path has been added to the PATH variable, use the following command and check if the correct path has been added to the PATH variable.</p>
+<pre>
+echo $PATH
+</pre>
+
+
 <h2>Testing the code</h2>
 <p>The 'test' directory contains tests to verify the proper compilation of the code.
 To run the basic tests, use the following command:</p>

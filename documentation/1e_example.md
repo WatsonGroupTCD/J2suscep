@@ -3,7 +3,7 @@
 
 <h2>Example 1</h2>
 <p>To understand the construction of the input files, let us take the example of a dimeric Mn complex shown in Figure 1 below.
-Here the Mn centres are in +IV oxidation state (d3 spin configuration).
+Here the Mn centres are in +IV oxidation state (d<sup>3</sup> spin configuration).
 <font face="Arial, Helvetica, sans-serif" size="-2">[<a href="refs.htm#Libby" class="showTip Libby">Libby</a>]</font></p>
 
 <p align="center"><img src="img/mn2.jpg" alt="Mn2 structure"><br /><b><i>Structure of the {Mn<sup>IV</sup><sub>2</sub>} complex. Colour scheme: Mn (dark blue), C (black), 
@@ -15,7 +15,7 @@ N (blue) and O (red). Hydrogen atoms have been removed for clarity.</i></b></p>
 <pre>
 magnetic centres
 2
-J values
+No. of J values
 1
 Hamiltonian
 1 2
@@ -55,7 +55,7 @@ be written as follows:</p>
 <pre>
 magnetic centres
 3
-J values
+No. of J values
 1
 Hamiltonian
 1 2
@@ -96,7 +96,7 @@ Each Mn centre in this complex has 1 trans- and 4 cis- neighbours and one requir
 between Mn centres.<font face="Arial, Helvetica, sans-serif" size="-2">[<a href="refs.htm#Tandon" class="showTip Tandon">Tandon</a>]</font>  </p> 
 
 
-<p>In example 3, four of the Mn centres, Mn1, Mn2, Mn4 and Mn5, are in +IV oxidation state (d3 spin configuration) while the others are in +III oxidation state. 
+<p>In example 3, four of the Mn centres, Mn1, Mn2, Mn4 and Mn5, are in +IV oxidation state (d<sup>3</sup> spin configuration) while the others are in +III oxidation state. 
 This decreases the overall symmetry of the complex. Therefore, the Hamiltonian for this complex can be written as follows:</p>
 <center> <font face="Courier New, Courier, monospace" size="-2">&nbsp;&nbsp;&nbsp;&nbsp;</font>H&#770 = -2J<sub>1</sub>[&lt;s<sub>1</sub>.s<sub>2</sub>&gt;]
 -2J<sub>2</sub>[&lt;s<sub>1</sub>.s<sub>6</sub>&gt;] -2J<sub>3</sub> [&lt;s<sub>2</sub>.s<sub>6</sub>&gt;]	
@@ -110,7 +110,7 @@ This decreases the overall symmetry of the complex. Therefore, the Hamiltonian f
 <pre>
 magnetic centres
 6
-J values
+No. of J values
 10
 Hamiltonian
 1 2
