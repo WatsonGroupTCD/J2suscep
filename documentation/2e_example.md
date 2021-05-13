@@ -28,7 +28,7 @@ Hamiltonian Ends
 <p>Here the number 2 in the second line specifies that there are 2 magnetic centres. This is followed by the number of J-values and  
 the details about the Hamiltonian. 
 
-<h3> File2 (additional parameters)</h3>
+<h3> File3 (additional parameters)</h3>
 <pre>
 spin
 1.5
@@ -52,7 +52,7 @@ which is then followed by the magnitude of the field strength in Oersted units (
 be determined in the temperature range of 2-300 K with 1 K increments.</p>
 <p>This example input file and the resultant output file have also been provided as separate files in the package. </p>
 
-<h3> File3 (J-values)</h3>
+<h3> File4 (J-values)</h3>
 <pre>
 J values
 -84.0722
@@ -95,7 +95,7 @@ Hamiltonian Ends
 the details about the Hamiltonian. 
 
 
-<h3> File2 (additional parameters)</h3>
+<h3> File3 (additional parameters)</h3>
 <pre>
 spin
 2.0
@@ -120,7 +120,7 @@ which is then followed by the magnitude of the field strength in Oersted units (
 be determined in the temperature range of 2-300 K with 1 K increments.</p>
 <p>This example input file and the resultant output file have also been provided as separate files in the package. </p>
 
-<h3> File3 (J-values)</h3>
+<h3> File4 (J-values)</h3>
 <pre>
 J values
 -9.0221
