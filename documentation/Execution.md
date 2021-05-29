@@ -68,6 +68,9 @@
 
 <p>The j-values determined using the ej_calc_spin codes are written to a file named 'jvals' and are used for the calculation of the temperature dependence of magnetic susceptibility. </p>
 
+<p>The usage information for this script can also be accessed as follows:</p>
+<pre>j2suscep -h</pre>
+
 
 
 <h1>Format of input files</h1>
