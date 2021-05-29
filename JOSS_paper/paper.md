@@ -52,7 +52,7 @@ package is to provide a means to accomplish this arduous task. Additionally,
 this package can also calculate the temperature dependence of magnetic 
 susceptibility thereby enabling the comparison of the computational data to 
 experiment. Although other codes like MAGPACK [@magpack] and PHI [@phi]
-are available for the calculation of the mangnetic susceptibility, 
+are available for the calculation of the magnetic susceptibility, 
 this package provides a one stop solution for the calculation of coupling 
 constants and the determination of the magnetic susceptibility using these 
 coupling constants.
