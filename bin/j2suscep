@@ -43,6 +43,8 @@ elif [ "$exe" = "-a" ]; then	#executing all codes together
   done < $if1"_spin.out"
   suscep $if1 $4 "jvals"
 elif [ "$exe" = "-h" ]; then    #help menu
+  echo ""
+  echo ""
   echo "***J2suscep help***"
   echo ""
   echo ""
@@ -61,12 +63,13 @@ elif [ "$exe" = "-h" ]; then    #help menu
   echo "For help:"
   echo " j2suscep -h"
   echo ""
-  echo "Information contained within different input files"
-  echo "File1: contains the details about the Hamiltonian."
-  echo "File2: contains information about the the value of spin operators for each paramagnetic centre and the energy of different spin states."
-  echo "File3: contains the additional information other than the J-values required to calculate the temperature dependence of magnetic susceptibility."
-  echo "File4: contains the magnitude of J-values to be used for the determination of magnetic susceptibility."
+  echo "Information expected within different input files"
+  echo "File1 should contain the details about the Hamiltonian."
+  echo "File2 should contain information about the the value of spin operators for each paramagnetic centre and the energy of different spin states."
+  echo "File3 should contain the additional information other than the J-values required to calculate the temperature dependence of magnetic susceptibility."
+  echo "File4 should contain the magnitude of J-values to be used for the determination of magnetic susceptibility."
 else     #help menu
+  echo "Invalid input provided."
   echo "J2suscep stopped abruptly. Please ensure proper usage of the program."
   echo ""
   echo ""
@@ -85,11 +88,12 @@ else     #help menu
   echo "For help:"
   echo " j2suscep -h"
   echo ""
-  echo "Information contained within different input files"
-  echo "File1: contains the details about the Hamiltonian."
-  echo "File2: contains information about the the value of spin operators for each paramagnetic centre and the energy of different spin states."
-  echo "File3: contains the additional information other than the J-values required to calculate the temperature dependence of magnetic susceptibility."
-  echo "File4: contains the magnitude of J-values to be used for the determination of magnetic susceptibility."
+  echo "Information expected within different input files"
+  echo "File1 should contain the details about the Hamiltonian."
+  echo "File2 should contain information about the the value of spin operators for each paramagnetic centre and the energy of different spin states."
+  echo "File3 should contain the additional information other than the J-values required to calculate the temperature dependence of magnetic susceptibility."
+  echo "File4 should contain the magnitude of J-values to be used for the determination of magnetic susceptibility."
+
 
 fi
 
