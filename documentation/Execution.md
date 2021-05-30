@@ -70,7 +70,32 @@
 
 <p>The usage information for this script can also be accessed as follows:</p>
 <pre>j2suscep -h</pre>
+<p>The following information is displayed with the use of the -h tag:</p>
+<pre>
+***J2suscep help***
 
+
+For executing ej_calc_spin:
+ j2suscep -s File1 File2
+
+For executing ej_calc_form:
+ j2suscep -f File1 File2
+
+For executing suscep:
+ j2suscep -S File1 File3 File4
+
+For executing all codes together:
+ j2suscep -a File1 File2 File3
+
+For help:
+ j2suscep -h
+
+Information expected within different input files
+File1 should contain the details about the Hamiltonian.
+File2 should contain information about the the value of spin operators for each paramagnetic centre and the energy of different spin states.
+File3 should contain the additional information other than the J-values required to calculate the temperature dependence of magnetic susceptibility.
+File4 should contain the magnitude of J-values to be used for the determination of magnetic susceptibility.
+</pre>
 
 
 <h1>Format of input files</h1>
