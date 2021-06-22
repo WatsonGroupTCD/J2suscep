@@ -26,5 +26,5 @@
   <li><strong><A HREF="2h_developers">For Developers</A></strong>  </li>
   </ul>
 </li>
-<h3><strong><a href="refs">References</a></strong><a href="refs"></a></h3>
-<li><A HREF="appendix"><strong>Appendix - Modelling Broken Symmetry States</strong></A>   </li>
+<li><A HREF="worked_example"><strong>Worked Example</strong></A>   </li>
+<li><a href="refs"><strong>References</a></strong></li>
