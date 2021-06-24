@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/292014721.svg)](https://zenodo.org/badge/latestdoi/292014721)
+
 # J2suscep
 This package contains two standalone codes written in FORTRAN 2008 – ej_calc and suscep. 
 The ej_calc code uses the spin densities obtained from DFT calculations and determines the isotropic exchange coupling between paramagnetic centres. 
