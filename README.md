@@ -1,4 +1,5 @@
 [![DOI](https://zenodo.org/badge/292014721.svg)](https://zenodo.org/badge/latestdoi/292014721)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.02838/status.svg)](https://doi.org/10.21105/joss.02838)
 
 # J2suscep
 This package contains two standalone codes written in FORTRAN 2008 – ej_calc and suscep. 
